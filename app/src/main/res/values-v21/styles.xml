@@ -1,0 +1,57 @@
+<resources>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+    <!-- #################################      Estilos de componentes de la tabla de productos -->
+    <style name="botonVerde">
+        <item name="android:visibility">visible</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/boton_verde</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@color/Negro</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="botonAzul">
+        <item name="android:visibility">visible</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:background">@drawable/boton_azul</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@color/Blanco</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+
+    <style name="TextoCentradoLargo">
+        <item name="android:text">@string/tProducto</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/Negro</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextoDerechaVUnidad">
+        <item name="android:text">@string/tVUnidad</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:textColor">@color/Negro</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="TextoCentradoCorto">
+        <item name="android:text">@string/tCant</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/Negro</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextoDerechaVTotal">
+        <item name="android:text">@string/tVTotal</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:textColor">@color/Negro</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+</resources>
