@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">POS_Coffee</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!--####################################################    Menu-->
+
+    <string name="menu_home">Home</string>
+    <string name="menu_turno">Turno</string>
+    <string name="menu_clientes">Clientes</string>
+    <string name="menu_productoss">Productos</string>
+    <string name="menu_admon">Administración</string>
+    <string name="menu_usuarios">Usuarios</string>
+    <string name="menu_config">Configuración</string>
+
+    <string name="menu_despejar">Borrar Ticket</string>
+    <string name="menu_unir">Unir Ticket</string>
+    <!--####################################################    Mis Strings-->
+
+    <string name="Empresa">Cafe Babilonia</string>
+    <string name="Eslogan_empresa">Gracias por tu trabajo</string>
+
+    <string name="Guardar">GUARDAR</string>
+    <string name="Cobrar"> COBRAR</string>
+
+    <string name="Buscar_Producto">Buscar producto</string>
+
+    <string name="EliminarDeLista">Eliminar</string>
+    <string name="CancelarEliminarDeLista">Cancelar</string>
+
+    <string name="Agregar">+</string>
+    <string name="Eliminar">--</string>
+    <string name="Externo">EXT</string>
+    <string name="Interno">INT</string>
+
+    <string name="Borrar">Borrar</string>
+    <string name="Producto">PROD</string>
+    <string name="Cantidad">CANT</string>
+    <string name="vUnidad">V.UND</string>
+    <string name="vTotal">V.TOTAL</string>
+
+    <string name="tProducto">Producto</string>
+    <string name="tCant">Cant</string>
+    <string name="tVUnidad">P.Und</string>
+    <string name="tVTotal">P.SubTotal</string>
+    <string name="title_activity_pag_guardar">PagGuardar</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+</resources>
