@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "758285739694",
+    "firebase_url": "https://pos-coffee.firebaseio.com",
+    "project_id": "pos-coffee",
+    "storage_bucket": "pos-coffee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758285739694:android:a5a1efade9d690aa",
+        "android_client_info": {
+          "package_name": "com.example.pos_coffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758285739694-osb253blr0ka2aikopdkmrckhnik6rka.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pos_coffee",
+            "certificate_hash": "c1b5d7186ec7de0159fba977f99541efafd89be5"
+          }
+        },
+        {
+          "client_id": "758285739694-ec971r4amk5jtpfp33h5glfvjsmmt1u9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB74xFGyYWYLhjM-Pg3_hH60IoDxn-urno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758285739694-ec971r4amk5jtpfp33h5glfvjsmmt1u9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
