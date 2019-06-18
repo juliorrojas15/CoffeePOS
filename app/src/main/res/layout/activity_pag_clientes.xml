@@ -81,7 +81,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:textSize="34dp"
+                android:paddingBottom="@dimen/activity_horizontal_margin"
                 android:text="@string/TituloCrearCliente"/>
             <EditText
                 android:layout_width="match_parent"

@@ -22,13 +22,13 @@
         </activity>
         <activity
             android:name=".pagGuardar"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".pagProductos"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".pagClientes"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
