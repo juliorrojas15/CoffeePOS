@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pagClientes">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:weightSum="15">
+
+            <EditText
+                android:id="@+id/etBuscarCliente"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:hint="@string/Buscar_Cliente" />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:background="#EEEEEE">
+
+            </ListView>
+            <TextView
+                android:id="@+id/tvNombreClienteExistente"
+                style="@style/TextosPagGuardar"
+                android:text="@string/Nombre_Nuevo" />
+            <TextView
+                android:id="@+id/tvCelClienteExistente"
+                style="@style/TextosPagGuardar"
+                android:text="@string/Celular" />
+            <TextView
+                android:id="@+id/tvDeudaActual"
+                style="@style/TextosPagGuardar"
+                android:text="@string/Deuda_Actual" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <Button
+                    android:id="@+id/bCobrarTodo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    style="@style/botonVerde"
+                    android:text="@string/CobrarTodo"/>
+                <Button
+                    android:id="@+id/bAbonar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    style="@style/botonAzul"
+                    android:text="@string/AbonarTodo"/>
+                <Button
+                    android:id="@+id/bElimnarCliente"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    style="@style/botonEnviar"
+                    android:text="@string/EliminarCliente"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:text="@string/TituloCrearCliente"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="@string/Nombre_Nuevo"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="@string/Celular_Nuevo"/>
+            <Button
+                android:id="@+id/bCrearCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                style="@style/botonAzul"
+                android:text="@string/CrearCliente"/>
+            <Button
+                android:id="@+id/bVolver"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                style="@style/botonRojo"
+                android:text="@string/Volver"
+                android:onClick="fNavegar"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:orientation="vertical"
+            android:weightSum="15">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:layout_margin="20dp"
+                android:background="@color/VerdeTickets">
+
+            </ListView>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:background="@color/GrisTickets">
+
+            </ListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:weightSum="12">
+
+                <Button
+                    android:id="@+id/bCobrarTicket"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    style="@style/botonVerde"
+                    android:text="@string/CobrarTicket"/>
+                <Button
+                    android:id="@+id/bEliminarTicket"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    style="@style/botonAzul"
+                    android:text="@string/EliminarTicket"/>
+                <Button
+                    android:id="@+id/bReembolsarTicket"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    style="@style/botonEnviar"
+                    android:text="@string/Reembolsar"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="$ ----"
+                    android:textAlignment="textEnd"
+                    android:textSize="40dp"/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

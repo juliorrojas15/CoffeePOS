@@ -7,14 +7,21 @@
     <color name="gray_background">#757575</color>
     <color name="yellow">#FFBB33</color>
 
-    <color name="VerdeRelleno">#94F731</color>
-    <color name="VerdeBorde">#4CAF50</color>
-    <color name="RojoRelleno">#F44336</color>
-    <color name="RojoBorde">#C52213</color>
     <color name="Blanco">#FFFFFF</color>
     <color name="Negro">#000000</color>
+
+    <color name="RojoRelleno">#F44336</color>
+    <color name="RojoBorde">#C52213</color>
     <color name="AzulRelleno">#03A9F4</color>
     <color name="AzulBorde">#03A9F4</color>
+    <color name="VerdeRelleno">#94F731</color>
+    <color name="VerdeBorde">#4CAF50</color>
+    <color name="EnviarRelleno">#FFEB3B</color>
+    <color name="EnviarBorde">#FFC107</color>
+
+    <color name="VerdeTickets">#D9FFAD</color>
+    <color name="GrisTickets">#E7E7E7</color>
+
 
 
 </resources>

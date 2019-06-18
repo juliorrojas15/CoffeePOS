@@ -8,23 +8,37 @@
     <!-- #################################      Estilos de componentes de la tabla de productos -->
     <style name="botonVerde">
         <item name="android:visibility">visible</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
         <item name="android:background">@drawable/boton_verde</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:textColor">@color/Negro</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="botonAzul">
         <item name="android:visibility">visible</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">100dp</item>
         <item name="android:background">@drawable/boton_azul</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:textColor">@color/Blanco</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">24sp</item>
     </style>
+
+    <style name="botonEnviar">
+        <item name="android:visibility">visible</item>
+        <item name="android:background">@drawable/boton_enviar</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@color/Negro</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="botonRojo">
+        <item name="android:visibility">visible</item>
+        <item name="android:background">@drawable/boton_rojo</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@color/Negro</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+
 
 
     <style name="TextoCentradoLargo">
@@ -53,5 +67,34 @@
         <item name="android:textColor">@color/Negro</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+
+    <!-- ###############################################    Estilos de la barra de navegación-->
+    <!-- Titulo negocio-->
+    <style name="TituloNegocio">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/nav_header_vertical_spacing</item>
+        <item name="android:text">@string/Empresa</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
+    </style>
+    <style name="FraseTituloNegocio">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/Eslogan_empresa</item>
+    </style>
+
+    <!-- ###############################################    Estilos de la pagina de GUARDAR-->
+    <!-- Titulo negocio-->
+
+    <style name="TextosPagGuardar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
 
 </resources>

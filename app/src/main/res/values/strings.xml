@@ -44,7 +44,7 @@
     <string name="vTotal">V.TOTAL</string>
 
     <string name="tProducto">Producto</string>
-    <string name="tCant">Cant</string>
+    <string name="tCant">Cant.</string>
     <string name="tVUnidad">P.Und</string>
     <string name="tVTotal">P.SubTotal</string>
     <string name="title_activity_pag_guardar">PagGuardar</string>
@@ -53,4 +53,61 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <!-- ################################################### Pagina de guardar-->
+    <string name="Cliente_Existente">CLIENTE EXSTENTE</string>
+    <string name="Cliente_Nuevo">CLIENTE NUEVO</string>
+
+
+    <string name="Buscar_Cliente">Buscar Cliente</string>
+    <string name="Celular">Celular: </string>
+    <string name="Deuda_Anterior">Deuda Anterior: </string>
+
+    <string name="Esta_Cuenta">Esta_Cuenta: </string>
+    <string name="Deuda_Nueva">Deuda Nueva: </string>
+
+    <string name="Nombre_Nuevo">Nombre: </string>
+    <string name="Celular_Nuevo">Celular: </string>
+
+    <string name="Solo_Guardar">SOLO GUARDAR</string>
+    <string name="Imprimir_Ultimo">IMPRIMIR ESTE TICKET</string>
+    <string name="Imprimir_Todo">IMPRIMIR TODO</string>
+    <string name="Enviar_Ultimo">ENVIAR ESTE TICKET</string>
+    <string name="Enviar_Todo">ENVIAR TODO</string>
+
+    <string name="Cancelar_Guardar">CANCELAR</string>
+
+    <!-- ################################################### Pagina de Productos-->
+    <string name="Titulo">PAGINA DE ARTICULOS</string>
+    <string name="AbrirArticulos">ARTICULOS</string>
+    <string name="AbrirCategorias">CATEGORIAS</string>
+
+
+    <string name="FiltroCategorias">Todos los Articulos</string>
+    <string name="AgregarArticulo">AGREGAR</string>
+    <string name="Volver">VOLVER</string>
+
+    <!-- ################################################### Pagina de Clientes-->
+
+    <string name="Deuda_Actual">Deuda Actual: </string>
+    <string name="CobrarTodo">COBRAR TODO</string>
+    <string name="AbonarTodo">ABONAR</string>
+    <string name="EliminarCliente">Eliminar Cliente</string>
+    <string name="NombreClienteNuevo">Nuevo Cliente: </string>
+    <string name="CelularClienteNuevo">Celular:</string>
+    <string name="TituloCrearCliente">CREAR UN CLIENTE NUEVO</string>
+    <string name="CrearCliente">CREAR CLIENTE</string>
+    <string name="CobrarTicket">Cobrar Ticket</string>
+    <string name="EliminarTicket">Eliminar Ticket</string>
+    <string name="Reembolsar">Reembolsar Ticket</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
 </resources>

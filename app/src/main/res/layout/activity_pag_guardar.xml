@@ -1,25 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:orientation="horizontal"
+    tools:context=".pagGuardar">
 
-    <include
-        layout="@layout/app_bar_pag_guardar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_pag_guardar"
-        app:menu="@menu/activity_pag_guardar_drawer" />
+        android:orientation="vertical"
+        android:weightSum="10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-</android.support.v4.widget.DrawerLayout>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbClienteExistente"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:text="@string/Cliente_Existente"
+                android:textSize="42dp" />
+
+            <RadioButton
+                android:id="@+id/rbClienteNuevo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:text="@string/Cliente_Nuevo"
+                android:textSize="42dp" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <EditText
+                    android:id="@+id/etBuscarCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:hint="@string/Buscar_Cliente" />
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:background="#EEEEEE">
+
+                </ListView>
+                <TextView
+                    android:id="@+id/tvNombreClienteExistente"
+                    style="@style/TextosPagGuardar"
+                    android:text="@string/Nombre_Nuevo" />
+
+                <TextView
+                    android:id="@+id/tvCelClienteExistente"
+                    style="@style/TextosPagGuardar"
+                    android:text="@string/Celular" />
+
+                <TextView
+                    android:id="@+id/tvDeudaAnterior"
+                    style="@style/TextosPagGuardar"
+                    android:text="@string/Deuda_Anterior" />
+
+                <TextView
+                    android:id="@+id/tvEstaCuenta_1"
+                    style="@style/TextosPagGuardar"
+                    android:text="@string/Esta_Cuenta" />
+
+                <TextView
+                    android:id="@+id/tvDeudaNueva"
+                    style="@style/TextosPagGuardar"
+                    android:text="@string/Deuda_Nueva" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <EditText
+                    android:id="@+id/etNombreClienteNuevo"
+                    style="@style/TextosPagGuardar"
+                    android:hint="@string/Nombre_Nuevo"
+                    android:inputType="text"
+                    android:layout_weight="1"/>
+
+                <EditText
+                    android:id="@+id/etCelularClienteNuevo"
+                    style="@style/TextosPagGuardar"
+                    android:hint="@string/Celular_Nuevo"
+                    android:inputType="phone"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tvEstaCuenta_2"
+                    style="@style/TextosPagGuardar"
+                    android:text="@string/Esta_Cuenta"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/bSoloGuardar"
+                    style="@style/botonVerde"
+                    android:layout_width="match_parent"
+                    android:layout_weight="3"
+                    android:layout_height="0dp"
+                    android:text="@string/Solo_Guardar" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bImprimirUltimo"
+                        style="@style/botonAzul"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:text="@string/Imprimir_Ultimo" />
+
+                    <Button
+                        android:id="@+id/bImprimirTodo"
+                        style="@style/botonAzul"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:text="@string/Imprimir_Todo" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bEnviarUltimo"
+                        style="@style/botonEnviar"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:text="@string/Enviar_Ultimo" />
+
+                    <Button
+                        android:id="@+id/bEnviarTodo"
+                        style="@style/botonEnviar"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:text="@string/Enviar_Todo" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="fNavegar"
+            android:text="@string/Cancelar_Guardar" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,5 +1,7 @@
 package com.example.pos_coffee;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,14 +15,35 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    //###################################################################################
+    //                      Navegación del menú
+    //###################################################################################
+
+    Button obGuardar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        obGuardar=(Button)findViewById(R.id.bGuardar);
+
+        obGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Destino=new Intent(MainActivity.this,pagGuardar.class);
+                startActivity(Destino);
+
+            }
+        });
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -31,6 +54,20 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
     }
+    //###################################################################################
+    //Eventos de los botones
+
+    /*public void fGuardar (View view){
+        //Navagación
+        Intent Destino=new Intent(MainActivity.this,pagGuardar.class);
+        startActivity(Destino);
+    }*/
+
+
+
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -72,15 +109,17 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_Turno) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_Clientes) {
+            Intent Destino = new Intent(this,pagClientes.class);
+            startActivity(Destino);
+        } else if (id == R.id.nav_Productos) {
+            Intent Destino = new Intent(this,pagProductos.class);
+            startActivity(Destino);
+        } else if (id == R.id.nav_Usuarios) {
 
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_Configuracion) {
 
         }
 
