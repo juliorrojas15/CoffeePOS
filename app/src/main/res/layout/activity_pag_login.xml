@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pagLogin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"/>
+        <EditText
+            android:id="@+id/etUsuario"
+            android:layout_width="500dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:inputType="textEmailAddress"
+            android:hint="@string/Ingresar_eMail"
+            android:textAlignment="center"/>
+
+        <EditText
+            android:id="@+id/etClave"
+            android:layout_width="500dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:inputType="textPassword"
+            android:hint="@string/Ingresar_Clave"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/bLogin"
+            android:layout_width="500dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/botonVerde"
+            android:text="@string/Login"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="500dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:weightSum="10">
+            <Button
+                android:id="@+id/bCancelar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                style="@style/botonRojo"
+                android:text="@string/CancelarLogin"
+                android:layout_gravity="center"/>
+            <Spinner
+                android:id="@+id/spTienda"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5">
+
+            </Spinner>
+            <Button
+                android:id="@+id/bIngresar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                style="@style/botonVerde"
+                android:text="@string/Ingresar"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/bRegistrarse"
+            android:layout_width="500dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/botonAzul"
+            android:text="@string/Registrarse"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

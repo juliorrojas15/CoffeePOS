@@ -54,6 +54,20 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
+    <!-- ################################################### Paginas de Login-->
+    <string name="Ingresar_eMail">Ingresar eMail *</string>
+    <string name="Ingresar_Clave">Ingresar Clave (alfanúmerica) *</string>
+    <string name="Ingresar_ConfirmarClave">Confirma tu clave *</string>
+    <string name="NombreTienda">Nombre de tu primera tienda *</string>
+    <string name="DireccionTienda">Dirección</string>
+    <string name="TelefonoTienda">Telefono</string>
+    <string name="CancelarLogin">Cancelar</string>
+    <string name="Login">LOGIN</string>
+    <string name="Ingresar">INGRESAR</string>
+    <string name="Registrarse">REGISTRARSE</string>
+
+
+
     <!-- ################################################### Pagina de guardar-->
     <string name="Cliente_Existente">CLIENTE EXSTENTE</string>
     <string name="Cliente_Nuevo">CLIENTE NUEVO</string>

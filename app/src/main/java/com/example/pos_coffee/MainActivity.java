@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +17,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -24,26 +28,19 @@ public class MainActivity extends AppCompatActivity
     //                      Navegación del menú
     //###################################################################################
 
-    Button obGuardar;
+    //Variables que se traen del login
+    public static final String sUsuario="usuario";
+    public static final String sTienda="tienda";
 
+    Button obGuardar;
+    TextView oTienda;
+    TextView oUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        obGuardar=(Button)findViewById(R.id.bGuardar);
-
-        obGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Destino=new Intent(MainActivity.this,pagGuardar.class);
-                startActivity(Destino);
-
-            }
-        });
-
-
-
+        //Configuración de los menús y barras de desplazamiento
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -53,15 +50,42 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView=navigationView.getHeaderView(0);    //Con este codigo es que puedo traer los TextView de otros layouts
+        oUsuario=(TextView)headerView.findViewById(R.id.tvCorreoUsuario);
+        oTienda=(TextView)headerView.findViewById(R.id.tvNombreTienda);
+
+        String sUsuario = getIntent().getStringExtra("usuario");
+        String sTienda = getIntent().getStringExtra("tienda");
+
+        //Carga de datos externos a variables internas
+        oTienda.setText(sTienda);
+        oUsuario.setText(sUsuario);
+
+        //Relación de variables con objetos del Layout
+        obGuardar = (Button) findViewById(R.id.bGuardar);
+
+
+        //Acción de botones
+        obGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fNavegar();
+            }
+        });
+
+
+
+
     }
     //###################################################################################
     //Eventos de los botones
 
-    /*public void fGuardar (View view){
+    public void fNavegar (){
         //Navagación
         Intent Destino=new Intent(MainActivity.this,pagGuardar.class);
         startActivity(Destino);
-    }*/
+    }
 
 
 
