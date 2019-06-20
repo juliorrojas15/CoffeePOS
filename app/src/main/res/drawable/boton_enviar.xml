@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="@color/GrisTickets" />
+            <stroke android:width="3dp"
+                android:color="@color/GrisTickets" />
+            <padding android:left="1dp"
+                android:top="1dp"
+                android:right="1dp"
+                android:bottom="1dp"/>
+
+            <corners android:radius="10px"/>
+        </shape>
+
+    </item>
     <item android:state_pressed="true">
         <shape>
             <solid android:color="#E0DDDD"/>
@@ -32,4 +46,5 @@
         </shape>
 
     </item>
+
 </selector>

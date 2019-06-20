@@ -64,9 +64,9 @@
     <string name="CancelarLogin">Cancelar</string>
     <string name="Login">LOGIN</string>
     <string name="Ingresar">INGRESAR</string>
-    <string name="Registrarse">REGISTRARSE</string>
-
-
+    <string name="Registrarse">REGISTRATE</string>
+    <string name="OlvideClave">Olvidaste tu clave?</string>
+    <string name="ReestablecerClave">Reestablecer clave</string>
 
     <!-- ################################################### Pagina de guardar-->
     <string name="Cliente_Existente">CLIENTE EXSTENTE</string>

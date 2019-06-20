@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pagLogin">
+    tools:context=".pagNewLogin">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,10 +12,7 @@
         android:orientation="vertical"
         android:weightSum="10">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"/>
+
         <EditText
             android:id="@+id/etUsuario"
             android:layout_width="500dp"
@@ -35,78 +32,60 @@
             android:inputType="textPassword"
             android:hint="@string/Ingresar_Clave"
             android:textAlignment="center"/>
-
-        <Button
-            android:id="@+id/bLogin"
+        <EditText
+            android:id="@+id/etConfirmarClave"
             android:layout_width="500dp"
             android:layout_height="0dp"
             android:layout_weight="1"
-            style="@style/botonVerde"
-            android:text="@string/Login"
-            android:layout_gravity="center"/>
-
-        <LinearLayout
-            android:layout_width="500dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
             android:layout_gravity="center"
-            android:weightSum="10">
-            <Button
-                android:id="@+id/bCancelar"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:textSize="20dp"
-                style="@style/botonRojo"
-                android:text="@string/CancelarLogin"
-                android:layout_gravity="center"/>
-            <Spinner
-                android:id="@+id/spTienda"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:textAlignment="center">
+            android:inputType="textPassword"
+            android:hint="@string/Ingresar_ConfirmarClave"
+            android:textAlignment="center"/>
 
-            </Spinner>
-            <Button
-                android:id="@+id/bIngresar"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:textSize="20dp"
-                style="@style/botonVerde"
-                android:text="@string/Ingresar"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-        <TextView
+        <EditText
+            android:id="@+id/etNombreTienda1"
             android:layout_width="500dp"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="ó"
-            android:textSize="24sp"
-            android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:inputType="text"
+            android:hint="@string/NombreTienda"
+            android:textAlignment="center"/>
+
+        <EditText
+            android:id="@+id/etDirTienda1"
+            android:layout_width="500dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:inputType="text"
+            android:hint="@string/DireccionTienda"
+            android:textAlignment="center"/>
+        <EditText
+            android:id="@+id/etTelTienda1"
+            android:layout_width="500dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:inputType="phone"
+            android:hint="@string/TelefonoTienda"
+            android:textAlignment="center"/>
         <Button
             android:id="@+id/bRegistrarse"
-            android:layout_width="wrap_content"
+            android:layout_width="500dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             style="@style/botonAzul"
             android:text="@string/Registrarse"
             android:layout_gravity="center"/>
         <Button
-            android:id="@+id/bOlvideClave"
+            android:id="@+id/bVolver"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            style="@style/botonEnviar"
-            android:textSize="12dp"
-            android:text="@string/OlvideClave"
-            android:layout_gravity="center"/>
-
+            android:layout_gravity="start"
+            style="@style/botonRojo"
+            android:text="@string/Volver"/>
 
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>
