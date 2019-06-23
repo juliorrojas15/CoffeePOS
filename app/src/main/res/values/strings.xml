@@ -68,6 +68,26 @@
     <string name="OlvideClave">Olvidaste tu clave?</string>
     <string name="ReestablecerClave">Reestablecer clave</string>
 
+    <!-- ################################################### Pagina de Configuración-->
+    <string name="TituloSesion">SESIÓN</string>
+    <string name="TituloPersonal">PERSONAL</string>
+    <string name="TituloTiendas">TIENDAS</string>
+    <string name="CerrarSesion">Cerrar Sesión</string>
+    <string name="Nombre_Tienda">Nombre:</string>
+    <string name="Direccion">Dirección:</string>
+    <string name="Telefono">Telefono:</string>
+    <string name="Clave">Clave</string>
+    <string name="Crear">Crear</string>
+    <string name="Perfil">Perfil</string>
+    <string name="Existentes">Existentes</string>
+
+    <string-array name="Perfiles">
+        <item>Cajero</item>
+        <item>Administrador</item>
+        <item>Gerente</item>
+    </string-array>
+
+
     <!-- ################################################### Pagina de guardar-->
     <string name="Cliente_Existente">CLIENTE EXSTENTE</string>
     <string name="Cliente_Nuevo">CLIENTE NUEVO</string>

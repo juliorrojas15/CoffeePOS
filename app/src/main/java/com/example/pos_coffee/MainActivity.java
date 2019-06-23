@@ -74,10 +74,17 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
-
     }
+    /*
+    @Override
+    protected void onStop(){
+        super.onStop();
+        String sPagina=MainActivity.class.getSimpleName();
+        Intent Destino=new Intent(getApplication(),pagClavePersonal.class);
+        Destino.putExtra(pagClavePersonal.sPagOrg,sPagina);
+        startActivity(Destino);
+    }
+    */
     //###################################################################################
     //Eventos de los botones
 
@@ -86,12 +93,6 @@ public class MainActivity extends AppCompatActivity
         Intent Destino=new Intent(MainActivity.this,pagGuardar.class);
         startActivity(Destino);
     }
-
-
-
-
-
-
 
     @Override
     public void onBackPressed() {
@@ -136,19 +137,25 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_Turno) {
 
         } else if (id == R.id.nav_Clientes) {
-            Intent Destino = new Intent(this,pagClientes.class);
-            startActivity(Destino);
+            fNavegarMenu(pagClientes.class);
         } else if (id == R.id.nav_Productos) {
-            Intent Destino = new Intent(this,pagProductos.class);
-            startActivity(Destino);
+            fNavegarMenu(pagProductos.class);
         } else if (id == R.id.nav_Usuarios) {
 
         } else if (id == R.id.nav_Configuracion) {
-
+            Intent Destino=new Intent(getApplication(),pagConfiguracion.class);
+            Destino.putExtra(pagConfiguracion.sTienda,oTienda.getText().toString());
+            startActivity(Destino);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    void fNavegarMenu(Class clPagina){
+        Intent Destino = new Intent(this,clPagina);
+        startActivity(Destino);
+    }
+
 }

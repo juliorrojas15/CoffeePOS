@@ -216,13 +216,10 @@ public class pagLogin extends AppCompatActivity {
                     ArrayAdapter Adapter = new ArrayAdapter(pagLogin.this,android.R.layout.simple_spinner_dropdown_item,list);
                     oTienda.setAdapter(Adapter);
                 } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
+                    Log.d(TAG, "Error adquiriendo documentos: ", task.getException());
                 }
             }
         });
-
-
-                //FirebaseFirestore.getInstance().document("Usuarios/"+sEmail+"/Tiendas/");
 
     }
 

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pagConfiguracion"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/bVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/botonEnviar"
+        android:text="@string/Volver" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/TituloSesion"
+                android:textAlignment="center"
+                android:textSize="34sp"/>
+
+            <TextView
+                android:id="@+id/tvUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/AzulRelleno"
+                android:textSize="24sp"/>
+            <Button
+                android:id="@+id/bCerrarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/botonRojo"
+                android:text="@string/CerrarSesion"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/TituloTiendas"
+                android:textAlignment="center"
+                android:textSize="34sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Existentes"
+                android:textAlignment="textStart"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <ListView
+                    android:id="@+id/lvTiendas"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:background="@color/GrisTickets">
+                </ListView>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/etNomTiendaNueva"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:hint="@string/Nombre_Tienda"/>
+                    <EditText
+                        android:id="@+id/etDirTiendaNueva"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:hint="@string/DireccionTienda"/>
+                    <EditText
+                        android:id="@+id/etTelTiendaNueva"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:hint="@string/TelefonoTienda"/>
+                    <Button
+                        android:id="@+id/bNuevaTienda"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        style="@style/botonVerde"
+                        android:text="@string/Crear"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/TituloPersonal"
+                android:textAlignment="center"
+                android:textSize="34sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Existentes"
+                android:textAlignment="textStart"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <ListView
+                    android:id="@+id/lvPersonal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:background="@color/GrisTickets">
+                </ListView>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/etNomPersonalNuevo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:hint="@string/Nombre_Tienda"/>
+                    <EditText
+                        android:id="@+id/etClavePersonalNuevo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:hint="@string/Clave"
+                        android:inputType="number"
+                        android:maxLength="4"/>
+                    <Spinner
+                        android:id="@+id/spPerfilPersonalNuevo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:entries="@array/Perfiles">
+
+                    </Spinner>
+                    <Button
+                        android:id="@+id/bNuevoPersonal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        style="@style/botonVerde"
+                        android:text="@string/Crear"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
