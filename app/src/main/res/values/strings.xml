@@ -82,6 +82,7 @@
     <string name="Existentes">Existentes</string>
 
     <string-array name="Perfiles">
+        <item></item>
         <item>Cajero</item>
         <item>Administrador</item>
         <item>Gerente</item>
