@@ -19,89 +19,120 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:orientation="vertical"
-            android:weightSum="9">
+            android:weightSum="10"
+            android:layout_margin="5sp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:text="@string/Titulo"
+                android:text="@string/TituloCategorias"
                 android:textSize="32sp"
                 android:textAlignment="center"
-                android:layout_weight="2"/>
-
-            <Button
-                android:id="@+id/bArticulos"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                style="@style/botonAzul"
-                android:text="@string/AbrirArticulos"/>
-            <Button
-                android:id="@+id/bCateorias"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                style="@style/botonAzul"
-                android:text="@string/AbrirCategorias"/>
-            <Button
-                android:id="@+id/bAgregar"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                style="@style/botonVerde"
-                android:text="@string/AgregarArticulo"/>
-
-
-            <Button
-                android:id="@+id/bVolver"
-                style="@style/botonRojo"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:onClick="fNavegar"
-                android:text="@string/Volver" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="7"
-            android:orientation="vertical"
-            android:weightSum="10">
+                android:layout_weight="1"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="horizontal"
                 android:weightSum="10">
 
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:autofillHints="@string/FiltroCategorias">
-
-                </Spinner>
-
                 <EditText
-                    android:id="@+id/etBuscarCliente"
+                    android:id="@+id/tvFiltroCategorias"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
-                    android:inputType="text"
-                    android:hint="@string/Buscar_Cliente" />
+                    android:hint="@string/Filtrar"/>
+
+                <Button
+                    android:id="@+id/bAgregarCategorias"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    style="@style/botonVerde"
+                    android:text="@string/AgregarArticulo"/>
             </LinearLayout>
 
             <ListView
+                android:id="@+id/lvCategorias"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="9">
+                android:layout_weight="7"
+                android:background="@color/GrisTickets">
 
             </ListView>
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"/>
+            <Button
+                android:id="@+id/bVolver"
+                style="@style/botonRojo"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:onClick="fNavegar"
+                android:text="@string/Volver" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:layout_margin="5sp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@string/TituloArticulos"
+                android:textSize="32sp"
+                android:textAlignment="center"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="10">
+
+                <Spinner
+                    android:id="@+id/spCategorias"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:hint="@string/Filtrar"/>
+
+                <Button
+                    android:id="@+id/bAgregarArticulos"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    style="@style/botonVerde"
+                    android:text="@string/AgregarArticulo"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/tvFiltroArticulos"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="@string/Filtrar"/>
+
+            <ListView
+                android:id="@+id/lvArticulos"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:background="@color/VerdeTickets">
+
+            </ListView>
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 

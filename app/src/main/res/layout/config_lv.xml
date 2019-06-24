@@ -7,17 +7,17 @@
     android:weightSum="10">
 
     <TextView
-        android:id="@+id/ConfigNombre"
+        android:id="@+id/ConfigText_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="4"/>
     <TextView
-        android:id="@+id/ConfigDireccion"
+        android:id="@+id/ConfigText_2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"/>
     <TextView
-        android:id="@+id/ConfigTelefono"
+        android:id="@+id/ConfigNum_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"/>

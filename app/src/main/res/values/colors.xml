@@ -22,6 +22,17 @@
     <color name="VerdeTickets">#D9FFAD</color>
     <color name="GrisTickets">#E7E7E7</color>
 
+    <!--Color de botones para categorias-->
+    <color name="CategRojo">#F44336</color>
+    <color name="CategFucsia">#E91E63</color>
+    <color name="CategVioleta">#9C27B0</color>
+    <color name="CategAzul1">#2196F3</color>
+    <color name="CategAzul2">#00BCD4</color>
+    <color name="CategVerde1">#009688</color>
+    <color name="CategVerde2">#CDDC39</color>
+    <color name="CategAmarillo">#FFEB3B</color>
+    <color name="CategNaranja">#FFC107</color>
+
 
 
 </resources>

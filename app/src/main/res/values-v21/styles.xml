@@ -96,5 +96,18 @@
         <item name="android:layout_marginTop">5dp</item>
     </style>
 
+    <!-- ###############################################    Estilos de la pagina de PORDUCTOS-->
+    <style name="TextosPagProductos">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/Negro</item>
+    </style>
+    <style name="BotonesPagCategorias">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:buttonTint">@color/Negro</item>
+    </style>
+
+
 
 </resources>

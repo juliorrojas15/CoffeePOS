@@ -113,13 +113,13 @@
     <string name="Cancelar_Guardar">CANCELAR</string>
 
     <!-- ################################################### Pagina de Productos-->
-    <string name="Titulo">PAGINA DE ARTICULOS</string>
-    <string name="AbrirArticulos">ARTICULOS</string>
-    <string name="AbrirCategorias">CATEGORIAS</string>
-
-
-    <string name="FiltroCategorias">Todos los Articulos</string>
+    <string name="TituloArticulos">ARTICULOS</string>
+    <string name="TituloCategorias">CATEGORIAS</string>
+    <string name="Filtrar">Filtrar</string>
     <string name="AgregarArticulo">AGREGAR</string>
+    <string name="NombreCategoria">Nombre de la nueva categoría</string>
+    <string name="NombreArticulo">Nombre del nuevo articulo</string>
+
     <string name="Volver">VOLVER</string>
 
     <!-- ################################################### Pagina de Clientes-->

@@ -81,7 +81,7 @@ public class pagConfiguracion extends AppCompatActivity {
         oPerfilPersonalNuevo=(Spinner)findViewById(R.id.spPerfilPersonalNuevo);
 
         //Variables que se traen de otros activities
-        final String sTienda = "Apto 303";//getIntent().getStringExtra("tienda");
+        final String sTienda = "Cafe Babilonia";//getIntent().getStringExtra("tienda");
         final String sEmail="juliorrojas15@gmail.com";//FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
 
         oCerrarSesion.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +113,9 @@ public class pagConfiguracion extends AppCompatActivity {
         });
 
         //--------- Actualizar ListView
-        Actualizar_LV(sEmail);
+        Actualizar_LV(sEmail,sTienda,"Tienda");
+        Actualizar_LV(sEmail,sTienda,"Personal");
+
 
     }
 
@@ -166,8 +168,30 @@ public class pagConfiguracion extends AppCompatActivity {
             }
         });
 
+        //--------- se le agrega Personal
+        DocumentReference bd_NuevoPersonal = FirebaseFirestore.getInstance()
+                .document("Usuarios/"+sEmail+"/Tiendas/"+sNombreTienda+"/Personal/Admon_1");
+
+        Map<String,Object> bd_GuardarPersonal=new HashMap<String, Object>();
+        bd_GuardarPersonal.put(NOMBRE_KEY,"Administrador 1");
+        bd_GuardarPersonal.put(CLAVE_KEY,1111);
+
+        bd_NuevoPersonal.set(bd_GuardarPersonal).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(ALARMA,"Documento ha sido guardado");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(ALARMA,"Documento NO fue guardado");
+            }
+        });
+
+
         //--------- Actualizar ListView
-        Actualizar_LV(sEmail);
+        Actualizar_LV(sEmail,sTienda,"Tienda");
+        //Actualizar_LV(sEmail,sTienda,"Personal");
 
         //---------  Borrar Campos
         oNomTiendaNueva.setText("");
@@ -180,7 +204,7 @@ public class pagConfiguracion extends AppCompatActivity {
         //---------  Condiciones
         String sNombrePersonal = oNomPersonalNuevo.getText().toString().trim();
         String sClavePersonal = oClavePersonalNuevo.getText().toString().trim();
-       String sPerfil = oPerfilPersonalNuevo.getSelectedItem().toString().trim();
+        String sPerfil = oPerfilPersonalNuevo.getSelectedItem().toString().trim();
 
         if (TextUtils.isEmpty(sNombrePersonal)) {
             Toast.makeText(this, "Debes ingresar un Nombre", Toast.LENGTH_SHORT).show();
@@ -219,6 +243,9 @@ public class pagConfiguracion extends AppCompatActivity {
             }
         });
 
+
+        Actualizar_LV(sEmail,sNombreTienda,"Personal");
+
         //---------  Borrar Campos
         oNomPersonalNuevo.setText("");
         oClavePersonalNuevo.setText("");
@@ -227,14 +254,19 @@ public class pagConfiguracion extends AppCompatActivity {
 
     }
 
-    void Actualizar_LV(final String sEmail){
+    void Actualizar_LV(final String sEmail, final String sTienda, final String sListView){
+        String sPath = "";
+        if (sListView=="Tienda"){
+            sPath="Usuarios/"+sEmail+"/Tiendas";
+        }
+        if (sListView=="Personal"){
+            sPath="Usuarios/"+sEmail+"/Tiendas/"+sTienda+"/Personal";
+        }
+        CollectionReference bd_Datos= FirebaseFirestore.getInstance().collection(sPath);
 
-        Collection cTiedas;
-        CollectionReference bd_Tiendas= FirebaseFirestore.getInstance().collection("Usuarios/"+sEmail+"/Tiendas");
-        bd_Tiendas.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        bd_Datos.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
                 if (task.isSuccessful()) {
                     final List<String> listDocuments = new ArrayList<>();
                     final List<Config_Entidad> listItems=new ArrayList<>();
@@ -242,15 +274,27 @@ public class pagConfiguracion extends AppCompatActivity {
 
                         Collection collection=document.getData().values();
                         List listPrevia=new ArrayList<>(collection);
-                        listItems.add(new Config_Entidad(listPrevia.get(1).toString(),
-                                                            listPrevia.get(2).toString(),
-                                                            listPrevia.get(0).toString()));
+                        int iPrimero=0,iSegundo=0,iTercero=0;
+                        if (sListView=="Tienda"){
+                            iPrimero=1;iSegundo=2;iTercero=0;
+                        }
+                        if (sListView=="Personal"){
+                            iPrimero=0;iSegundo=2;iTercero=1;
+                        }
+                        listItems.add(new Config_Entidad(listPrevia.get(iPrimero).toString(),
+                                                            listPrevia.get(iSegundo).toString(),
+                                                            listPrevia.get(iTercero).toString()));
                         Log.d("Campos: ", listItems.toString());
                     }
                     oTiendas_LV=(ListView)findViewById(R.id.lvTiendas);
+                    oPersonal_LV=(ListView)findViewById(R.id.lvPersonal);
                     Config_Adaptador Adapter = new Config_Adaptador(pagConfiguracion.this,listItems);
-                    oTiendas_LV.setAdapter(Adapter);
-
+                    if(sListView=="Tienda"){
+                        oTiendas_LV.setAdapter(Adapter);
+                    }
+                    if(sListView=="Personal"){
+                        oPersonal_LV.setAdapter(Adapter);
+                    }
                 } else {
                     Log.d("Actividad", "Error adquiriendo documentos: ", task.getException());
                 }
@@ -262,6 +306,5 @@ public class pagConfiguracion extends AppCompatActivity {
 
 
     }
-
 
 }
