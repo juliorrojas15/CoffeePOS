@@ -163,6 +163,8 @@
     <string name="TipoVisualización">Visualización</string>
     <string name="ColorArticulo">Color</string>
     <string name="ImagenArticulo">Imagen</string>
+    <string name="ValorCero">0</string>
+
 
     <string name="ColumnaNomArticulo">Artículo</string>
     <string name="ColumnaStock">STOCK</string>

@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 public class pagNuevaCategoria extends AppCompatActivity {
-    //Variables que se traen del login
+    //Variables que se traen de la pagina de Productos
     public static final String sTienda="tienda";
     public static final String psNomCategoria="NomCategoria";
     public static final String psColorCategoria="ColorCategoria";

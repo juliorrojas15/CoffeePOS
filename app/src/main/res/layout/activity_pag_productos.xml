@@ -146,17 +146,50 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/tvFiltroArticulos"
+                android:id="@+id/etFiltroArticulos"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:hint="@string/Filtrar"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:textAlignment="textStart"
+                    android:text="@string/ColumnaNomArticulo"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textAlignment="center"
+                    android:text="@string/ColumnaStock"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textAlignment="textEnd"
+                    android:text="@string/ColumnaCosto"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textAlignment="textEnd"
+                    android:text="@string/ColumnaPrecio"/>
+            </LinearLayout>
             <ListView
                 android:id="@+id/lvArticulos"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6"
+                android:layout_weight="5.5"
                 android:background="@color/VerdeTickets">
 
             </ListView>

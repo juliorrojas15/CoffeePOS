@@ -37,7 +37,7 @@ public class Categ_Adaptador extends BaseAdapter implements Filterable {
         return originalArray.size();
     }
 
-    TextView oNomCategoria,oCantArticulos,oColorCategoria;
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -45,9 +45,9 @@ public class Categ_Adaptador extends BaseAdapter implements Filterable {
         LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View Item=inflater.inflate(R.layout.categorias_lv,null);
 
-        oNomCategoria=(TextView)Item.findViewById(R.id.tvNomCategoria_LV);
-        oCantArticulos=(TextView)Item.findViewById(R.id.tvCantArticulos_LV);
-        oColorCategoria=(TextView)Item.findViewById(R.id.tvColorCategoria_LV);
+        TextView oNomCategoria=(TextView)Item.findViewById(R.id.tvNomCategoria_LV);
+        TextView oCantArticulos=(TextView)Item.findViewById(R.id.tvCantArticulos_LV);
+        TextView oColorCategoria=(TextView)Item.findViewById(R.id.tvColorCategoria_LV);
 
         oNomCategoria.setText(originalArray.get(position).getsNomCategoria());
         oCantArticulos.setText(originalArray.get(position).getsCantArticulos());
@@ -58,7 +58,6 @@ public class Categ_Adaptador extends BaseAdapter implements Filterable {
     }
     @Override
     public long getItemId(int position) {
-        //return originalArray.indexOf(getItemId(position));
         return position;
     }
     @Override

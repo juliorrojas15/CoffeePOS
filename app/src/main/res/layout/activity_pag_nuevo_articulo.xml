@@ -80,6 +80,7 @@
                     android:layout_weight="3"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/PrecioArticulo"/>
                 <EditText
                     android:id="@+id/etNuevoCostoArt"
@@ -88,6 +89,7 @@
                     android:layout_weight="3"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/CostoArticulo"/>
                 <EditText
                     android:id="@+id/etNuevoStockArt"
@@ -96,6 +98,7 @@
                     android:layout_weight="3"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/StockArticulo"/>
 
             </LinearLayout>
@@ -120,6 +123,7 @@
                     android:layout_weight="2"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/CodigoBarrasArticulo"/>
                 <EditText
                     android:id="@+id/etNuevoDescuentoArt"
@@ -128,6 +132,7 @@
                     android:layout_weight="2"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/DescuentoArticulo"/>
 
             </LinearLayout>
@@ -167,6 +172,7 @@
                     android:layout_weight="2"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/PrecioVariante1"/>
                 <android.support.v4.widget.Space
                     android:layout_width="0dp"
@@ -187,6 +193,7 @@
                     android:layout_weight="2"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/PrecioVariante4"/>
 
             </LinearLayout>
@@ -214,6 +221,7 @@
                     android:layout_weight="2"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/PrecioVariante2"/>
                 <android.support.v4.widget.Space
                     android:layout_width="0dp"
@@ -234,6 +242,7 @@
                     android:layout_weight="2"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/PrecioVariante5"/>
 
             </LinearLayout>
@@ -261,6 +270,7 @@
                     android:layout_weight="2"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/PrecioVariante3"/>
                 <android.support.v4.widget.Space
                     android:layout_width="0dp"
@@ -281,6 +291,7 @@
                     android:layout_weight="2"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
+                    android:text="0"
                     android:hint="@string/PrecioVariante6"/>
 
             </LinearLayout>
@@ -300,6 +311,7 @@
                 android:layout_height="25dp"/>
 
             <RadioGroup
+                android:id="@+id/rgVisualizacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -329,7 +341,7 @@
                 android:orientation="horizontal"
                 android:background="@color/GrisTickets">
                 <RadioGroup
-                    android:id="@+id/rgColores"
+                    android:id="@+id/rgColoresArt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
