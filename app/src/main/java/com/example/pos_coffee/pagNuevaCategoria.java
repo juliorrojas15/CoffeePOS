@@ -35,6 +35,10 @@ import java.util.Map;
 public class pagNuevaCategoria extends AppCompatActivity {
     //Variables que se traen del login
     public static final String sTienda="tienda";
+    public static final String psNomCategoria="NomCategoria";
+    public static final String psColorCategoria="ColorCategoria";
+    public static final String psEditarEliminar="Editar/Eliminar";
+
 
     //Keys de la base de datos
     public static final String NOMBRE_KEY = "Nombre";
@@ -46,7 +50,8 @@ public class pagNuevaCategoria extends AppCompatActivity {
     private EditText oetNomCategoria;
     private RadioGroup orgColores;
     private RadioButton orbColor;
-    private Button obVolver, obGuardar;
+    private Button obVolver, obGuardar,obEditar,obEliminar;
+
 
 
     int iNombreIgual=0;
@@ -60,10 +65,32 @@ public class pagNuevaCategoria extends AppCompatActivity {
         orgColores=(RadioGroup)findViewById(R.id.rgColores);
         obVolver=(Button)findViewById(R.id.bVolver);
         obGuardar=(Button)findViewById(R.id.bGuardar);
+        obEditar=(Button)findViewById(R.id.bEditar);
+        obEliminar=(Button)findViewById(R.id.bEliminar);
+
+
 
         //Variables que se traen de otros activities
         final String sTienda = "Cafe Babilonia";//getIntent().getStringExtra("tienda");
         final String sEmail="juliorrojas15@gmail.com";//FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        final String psNomCategoria=getIntent().getStringExtra("NomCategoria");
+        final String psColorCategoria=getIntent().getStringExtra("ColorCategoria");
+        final String psEditarEliminar=getIntent().getStringExtra("Editar/Eliminar");
+
+        if (psEditarEliminar.equalsIgnoreCase("Agregar")){
+            obGuardar.setVisibility(View.VISIBLE);
+            obEditar.setVisibility(View.INVISIBLE);
+            obEliminar.setVisibility(View.INVISIBLE);
+            oetNomCategoria.setEnabled(true);
+        }
+
+        if(psEditarEliminar.equalsIgnoreCase("Editar/Eliminar")){
+            obGuardar.setVisibility(View.INVISIBLE);
+            obEditar.setVisibility(View.VISIBLE);
+            obEliminar.setVisibility(View.VISIBLE);
+            oetNomCategoria.setText(psNomCategoria);
+            oetNomCategoria.setEnabled(false);
+        }
 
 
         obVolver.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +99,6 @@ public class pagNuevaCategoria extends AppCompatActivity {
                 fNavegarSimple(pagProductos.class);
             }
         });
-
         obGuardar.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -81,6 +107,23 @@ public class pagNuevaCategoria extends AppCompatActivity {
                 fRevisarNombre(sEmail,sTienda);
             }
         });
+        obEditar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                sNombreCategoria=oetNomCategoria.getText().toString();
+                fCrearBBDD(sEmail,sTienda);
+            }
+        });
+        obEliminar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                sNombreCategoria=oetNomCategoria.getText().toString();
+                fEliminarBBDD(sEmail,sTienda);
+            }
+        });
+
 
     }
 
@@ -152,6 +195,7 @@ public class pagNuevaCategoria extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 Log.d(ALARMA_KEY,"La Categoria ha sido guardada");
                 Toast.makeText(pagNuevaCategoria.this,"La Categoria ha sido guardada",Toast.LENGTH_LONG).show();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -159,6 +203,29 @@ public class pagNuevaCategoria extends AppCompatActivity {
                 Log.d(ALARMA_KEY,"Documento NO fue guardado");
             }
         });
-   }
+        fNavegarSimple(pagProductos.class);
+    }
+
+    void fEliminarBBDD(String sEmail, String sTienda){
+        DocumentReference bd_EliminarCategoria = FirebaseFirestore.getInstance()
+                .document("Usuarios/"+sEmail+"/Tiendas/"+sTienda+"/Categorias/"+sNombreCategoria);
+                bd_EliminarCategoria
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Alarma", "DocumentSnapshot successfully deleted!");
+                        Toast.makeText(pagNuevaCategoria.this,"Categoria eliminada",Toast.LENGTH_LONG).show();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(pagNuevaCategoria.this,"No se ha podido eliminar la Categoría",Toast.LENGTH_LONG).show();
+                    }
+                });
+        fNavegarSimple(pagProductos.class);
+    }
 
 }

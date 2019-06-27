@@ -113,14 +113,62 @@
     <string name="Cancelar_Guardar">CANCELAR</string>
 
     <!-- ################################################### Pagina de Productos-->
-    <string name="TituloArticulos">ARTICULOS</string>
-    <string name="TituloCategorias">CATEGORIAS</string>
+    <string name="TituloArticulos">ARTÍCULOS</string>
+    <string name="TituloCategorias">CATEGORÍAS</string>
     <string name="Filtrar">Filtrar</string>
     <string name="AgregarArticulo">AGREGAR</string>
     <string name="NombreCategoria">Nombre de la nueva categoría</string>
-    <string name="NombreArticulo">Nombre del nuevo articulo</string>
+    <string name="ColumnaNomCategoria">Categoría</string>
+    <string name="ColumnaCantArticulos">Cant. de Artículos</string>
+    <string name="ColumnaColorCategoria">Color</string>
+
 
     <string name="Volver">VOLVER</string>
+    <string name="Guardar_Categoria">GUARDAR</string>
+    <string name="Editar_Categoria">EDITAR</string>
+    <string name="Eliminar_Categoria">ELIMINAR</string>
+
+
+
+    <string name="Titulo_Articulo">CREACIÓN Y EDICIÓN DE ARTÍCULOS</string>
+    <string name="Guardar_Articulo">Guardar Artículo</string>
+    <string name="Editar_Articulo">Editar Artículo</string>
+    <string name="Eliminar_Articulo">Eliminar Artículo</string>
+
+    <string name="NombreArticulo">Nombre del nuevo artículo</string>
+
+    <string name="TituloPrecios">CONFIGURACIÓN DE PRECIOS Y COSTOS</string>
+    <string name="TituloVariantes">VARIANTES</string>
+    <string name="TituloVisualizacion">VISUALIZACIÓN</string>
+
+    <string name="PrecioArticulo">Precio de Venta</string>
+    <string name="CostoArticulo">Costo de Venta</string>
+    <!--<String name="ManejoPrecio">Deje el campo en blanco para indicar el precio durante la venta</String>-->
+    <string name="ReferenciaArticulo">REF</string>
+    <string name="CodigoBarrasArticulo">Código de Barras</string>
+    <string name="DescuentoArticulo">Descuento (%)</string>
+    <string name="StockArticulo">Stock</string>
+    <string name="NombreVariante1">Nombre variante 1</string>
+    <string name="NombreVariante2">Nombre variante 2</string>
+    <string name="NombreVariante3">Nombre variante 3</string>
+    <string name="NombreVariante4">Nombre variante 4</string>
+    <string name="NombreVariante5">Nombre variante 5</string>
+    <string name="NombreVariante6">Nombre variante 6</string>
+    <string name="PrecioVariante1">Precio variante 1</string>
+    <string name="PrecioVariante2">Precio variante 2</string>
+    <string name="PrecioVariante3">Precio variante 3</string>
+    <string name="PrecioVariante4">Precio variante 4</string>
+    <string name="PrecioVariante5">Precio variante 5</string>
+    <string name="PrecioVariante6">Precio variante 6</string>
+    <string name="TipoVisualización">Visualización</string>
+    <string name="ColorArticulo">Color</string>
+    <string name="ImagenArticulo">Imagen</string>
+
+    <string name="ColumnaNomArticulo">Artículo</string>
+    <string name="ColumnaStock">STOCK</string>
+    <string name="ColumnaPrecio">PRECIO</string>
+    <string name="ColumnaCosto">COSTO</string>
+    <string name="ColumnaMargen">MARGEN</string>
 
     <!-- ################################################### Pagina de Clientes-->
 

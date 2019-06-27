@@ -12,27 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".pagNuevaCategoria">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".pagNuevoArticulo"
+            android:windowSoftInputMode="adjustPan">
         </activity>
-        <activity android:name=".pagConfiguracion">
-
+        <activity
+            android:name=".pagNuevaCategoria"
+            android:windowSoftInputMode="adjustPan">
         </activity>
+        <activity android:name=".pagConfiguracion"></activity>
         <activity android:name=".pagClavePersonal" />
         <activity
             android:name=".pagLogin"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustNothing"></activity>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".pagGuardar"
             android:screenOrientation="landscape"
@@ -40,7 +38,13 @@
         <activity
             android:name=".pagProductos"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".pagClientes"
             android:screenOrientation="landscape"

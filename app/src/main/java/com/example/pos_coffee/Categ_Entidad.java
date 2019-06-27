@@ -24,4 +24,16 @@ public class Categ_Entidad {
     public String getsColorCategoria() {
         return sColorCategoria;
     }
+
+    public void setsNomCategoria(String sNomCategoria) {
+        this.sNomCategoria = sNomCategoria;
+    }
+
+    public void setsCantArticulos(String sCantArticulos) {
+        this.sCantArticulos = sCantArticulos;
+    }
+
+    public void setsColorCategoria(String sColorCategoria) {
+        this.sColorCategoria = sColorCategoria;
+    }
 }
