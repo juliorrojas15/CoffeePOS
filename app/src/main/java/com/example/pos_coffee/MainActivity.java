@@ -140,7 +140,11 @@ public class MainActivity extends AppCompatActivity
             fNavegarMenu(pagClientes.class);
         } else if (id == R.id.nav_Productos) {
             fNavegarMenu(pagProductos.class);
-        } else if (id == R.id.nav_Usuarios) {
+            Intent Destino=new Intent(getApplication(),pagProductos.class);
+            Destino.putExtra(pagProductos.spTienda,oTienda.getText().toString());
+            startActivity(Destino);
+        }
+        else if (id == R.id.nav_Usuarios) {
 
         } else if (id == R.id.nav_Configuracion) {
             Intent Destino=new Intent(getApplication(),pagConfiguracion.class);

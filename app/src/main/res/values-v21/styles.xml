@@ -119,5 +119,11 @@
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
+    <style name="TextosCamposPagArticulos">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_gravity">start</item>
+    </style>
 
 </resources>

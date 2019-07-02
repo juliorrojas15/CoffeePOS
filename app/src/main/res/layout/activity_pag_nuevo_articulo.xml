@@ -65,7 +65,33 @@
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="25dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:background="@color/GrisTickets">
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    style="@style/TextosCamposPagArticulos"
+                    android:text="@string/PrecioArticulo"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    style="@style/TextosCamposPagArticulos"
+                    android:text="@string/CostoArticulo"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    style="@style/TextosCamposPagArticulos"
+                    android:text="@string/StockArticulo"/>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,6 +135,32 @@
                 android:orientation="horizontal"
                 android:weightSum="10"
                 android:background="@color/GrisTickets">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    style="@style/TextosCamposPagArticulos"
+                    android:text="@string/ReferenciaArticulo"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    style="@style/TextosCamposPagArticulos"
+                    android:text="@string/CodigoBarrasArticulo"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    style="@style/TextosCamposPagArticulos"
+                    android:text="@string/DescuentoArticulo"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:background="@color/GrisTickets">
                 <EditText
                     android:id="@+id/etNuevoRefArt"
                     android:layout_width="0dp"
@@ -137,6 +189,8 @@
 
             </LinearLayout>
 
+<!--En todo este codigo está los datos de las variantes-->
+<!--
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="25dp"/>
@@ -169,11 +223,21 @@
                     android:id="@+id/etPrecioArtVar_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:inputType="number"
                     style="@style/TextosPagArticulos"
                     android:text="0"
                     android:hint="@string/PrecioVariante1"/>
+                <EditText
+                    android:id="@+id/etCostoArtVar_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    style="@style/TextosPagArticulos"
+                    android:text="0"
+                    android:hint="@string/PrecioVariante1"/>
+
                 <android.support.v4.widget.Space
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -295,6 +359,7 @@
                     android:hint="@string/PrecioVariante6"/>
 
             </LinearLayout>
+-->
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="25dp"/>
@@ -389,9 +454,10 @@
                 <ImageView
                     android:id="@+id/imImagenArt"
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_height="200dp"
                     android:layout_margin="20dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:src="@drawable/logo_imagen"/>
             </LinearLayout>
         </LinearLayout>
 

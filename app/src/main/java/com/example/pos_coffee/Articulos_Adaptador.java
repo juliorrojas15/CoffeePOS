@@ -90,18 +90,10 @@ public class Articulos_Adaptador  extends BaseAdapter implements Filterable {
                                 tempArray.get(i).getiStockArt(),
                                 tempArray.get(i).getiDescuentoArt(),
                                 tempArray.get(i).getiCodigoBarrasArt(),
-                                tempArray.get(i).getsNomVar_1(),
-                                tempArray.get(i).getsNomVar_2(),
-                                tempArray.get(i).getsNomVar_3(),
-                                tempArray.get(i).getsNomVar_4(),
-                                tempArray.get(i).getsNomVar_5(),
-                                tempArray.get(i).getsNomVar_6(),
-                                tempArray.get(i).getiPrecioVar_1(),
-                                tempArray.get(i).getiPrecioVar_2(),
-                                tempArray.get(i).getiPrecioVar_3(),
-                                tempArray.get(i).getiPrecioVar_4(),
-                                tempArray.get(i).getiPrecioVar_5(),
-                                tempArray.get(i).getiPrecioVar_6());
+                                tempArray.get(i).getsTipoVisualizacion(),
+                                tempArray.get(i).getsColor(),
+                                tempArray.get(i).getiIndexColor(),
+                                tempArray.get(i).getsUriImagen());
                         filters.add(articulos_entidad);
                     }
                 }

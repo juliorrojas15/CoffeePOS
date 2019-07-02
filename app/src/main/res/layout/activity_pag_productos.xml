@@ -130,11 +130,12 @@
                 android:weightSum="10">
 
                 <Spinner
-                    android:id="@+id/spCategorias"
+                    android:id="@+id/spFiltroArticulos"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
-                    android:hint="@string/Filtrar"/>
+                    android:hint="@string/Filtrar"
+                    android:entries="@array/Categorias"/>
 
                 <Button
                     android:id="@+id/bAgregarArticulos"

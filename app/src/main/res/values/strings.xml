@@ -148,22 +148,23 @@
     <string name="CodigoBarrasArticulo">Código de Barras</string>
     <string name="DescuentoArticulo">Descuento (%)</string>
     <string name="StockArticulo">Stock</string>
+    <!--
     <string name="NombreVariante1">Nombre variante 1</string>
     <string name="NombreVariante2">Nombre variante 2</string>
     <string name="NombreVariante3">Nombre variante 3</string>
     <string name="NombreVariante4">Nombre variante 4</string>
     <string name="NombreVariante5">Nombre variante 5</string>
     <string name="NombreVariante6">Nombre variante 6</string>
-    <string name="PrecioVariante1">Precio variante 1</string>
-    <string name="PrecioVariante2">Precio variante 2</string>
-    <string name="PrecioVariante3">Precio variante 3</string>
-    <string name="PrecioVariante4">Precio variante 4</string>
-    <string name="PrecioVariante5">Precio variante 5</string>
-    <string name="PrecioVariante6">Precio variante 6</string>
+    <string name="PrecioVariante">Precio</string>
+    <string name="CostoVariante">Costo</string>
+-->
+
+
     <string name="TipoVisualización">Visualización</string>
     <string name="ColorArticulo">Color</string>
     <string name="ImagenArticulo">Imagen</string>
     <string name="ValorCero">0</string>
+    <string name="AgregarImagen"> + Img.</string>
 
 
     <string name="ColumnaNomArticulo">Artículo</string>
@@ -171,6 +172,16 @@
     <string name="ColumnaPrecio">PRECIO</string>
     <string name="ColumnaCosto">COSTO</string>
     <string name="ColumnaMargen">MARGEN</string>
+
+    <string-array name="Categorias">
+        <item></item>
+        <item>Bebidas</item>
+        <item>Papeleria</item>
+        <item>Vitrina</item>
+    </string-array>
+
+
+
 
     <!-- ################################################### Pagina de Clientes-->
 

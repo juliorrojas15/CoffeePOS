@@ -15,11 +15,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -33,18 +35,32 @@ import java.util.HashMap;
 import java.util.List;
 
 public class pagProductos extends AppCompatActivity{
-    public static final String sTienda="tienda";
+
+    //#########################################################################################     //Variables que se traen de la pagina de Productos
+    //public static final String spEmail="email";
+    public static final String spTienda="tienda";
 
 
+    //#########################################################################################     //Keys de la base de datos
+
+    //#########################################################################################     //Objetos del Layout
     Button obVolver,obAgregarCategoria,obAgregarArticulo;
     ListView olvCategorias,olvArticulos;
     EditText oetFiltroCategorias,oetFiltroArticulos;
+    Spinner ospFiltroArticulos;
+
+    //#########################################################################################     Variables Globales
 
 
+    //#########################################################################################################################################
+    //#########################################################################################     ON CREATE
+    //#########################################################################################################################################
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pag_productos);
+
+        //#####################################################################################     Relación de objetos con Layout
         obVolver=(Button)findViewById(R.id.bVolver);
         obAgregarCategoria=(Button)findViewById(R.id.bAgregarCategorias);
         obAgregarArticulo=(Button)findViewById(R.id.bAgregarArticulos);
@@ -52,10 +68,14 @@ public class pagProductos extends AppCompatActivity{
         olvCategorias=(ListView)findViewById(R.id.lvCategorias);
         olvArticulos=(ListView)findViewById(R.id.lvArticulos);
         oetFiltroCategorias=(EditText)findViewById(R.id.etFiltroCategorias);
-        //oetFiltroCategorias.addTextChangedListener(this);
         oetFiltroArticulos=(EditText)findViewById(R.id.etFiltroArticulos);
+        ospFiltroArticulos=(Spinner)findViewById(R.id.spFiltroArticulos);
 
-        //########### Filtros de los ListView
+        //###################################################################################       Variables que se traen de otros activities
+        final String sTienda = getIntent().getStringExtra("tienda");
+        final String sEmail= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+
+        //###################################################################################       Filtros de los ListView
         oetFiltroCategorias.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -88,11 +108,15 @@ public class pagProductos extends AppCompatActivity{
 
             }
         });
-
-        //Variables que se traen de otros activities
-        final String sTienda = "Cafe Babilonia";//getIntent().getStringExtra("tienda");
-        final String sEmail="juliorrojas15@gmail.com";//FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-
+/*
+        ospFiltroArticulos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                pagProductos.this.myAdapter_Art.getFilter().filter(Long.toString(myAdapter_Art.getItemId(position)));
+            }
+        });
+*/
+        //##################################################################################         Acciones de botones
         obVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,10 +141,12 @@ public class pagProductos extends AppCompatActivity{
 
                 Intent Destino=new Intent(getApplication(),pagNuevoArticulo.class);
                 Destino.putExtra(pagNuevoArticulo.psEditarEliminar,psEditarEliminar);
+                Destino.putExtra(pagNuevoArticulo.psTienda,sTienda);
                 startActivity(Destino);
             }
         });
 
+        //##################################################################################         Acciones de las List view
         olvCategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -137,22 +163,54 @@ public class pagProductos extends AppCompatActivity{
                 startActivity(Destino);
             }
         });
+        olvArticulos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            String asDatosArticulos[]=new String[12];
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Object oArregloSeleccionado = olvArticulos.getItemAtPosition(position);
+                Articulos_Entidad oItemSeleccionado=(Articulos_Entidad)oArregloSeleccionado;
+                asDatosArticulos[0]=oItemSeleccionado.getsNombreArt();
+                asDatosArticulos[1]=oItemSeleccionado.getsCategoriaArt();
+                asDatosArticulos[2]=String.valueOf(oItemSeleccionado.getiPrecioArt());
+                asDatosArticulos[3]=String.valueOf(oItemSeleccionado.getiCostoArt());
+                asDatosArticulos[4]=String.valueOf(oItemSeleccionado.getiStockArt());
+                asDatosArticulos[5]=oItemSeleccionado.getsRefArt();
+                asDatosArticulos[6]=String.valueOf(oItemSeleccionado.getiCodigoBarrasArt());
+                asDatosArticulos[7]=String.valueOf(oItemSeleccionado.getiDescuentoArt());
+                asDatosArticulos[8]=String.valueOf(oItemSeleccionado.getsTipoVisualizacion());
+                asDatosArticulos[9]=String.valueOf(oItemSeleccionado.getsColor());
+                asDatosArticulos[10]=String.valueOf(oItemSeleccionado.getiIndexColor());
+                asDatosArticulos[11]=String.valueOf(oItemSeleccionado.getsUriImagen());
 
+                String psEditarEliminar="Editar/Eliminar";
+
+                Intent Destino=new Intent(getApplication(),pagNuevoArticulo.class);
+                Destino.putExtra(pagNuevoArticulo.pasDatosArticulos,asDatosArticulos);
+                Destino.putExtra(pagNuevoArticulo.psEditarEliminar,psEditarEliminar);
+                Destino.putExtra(pagNuevoArticulo.psTienda,sTienda);
+                startActivity(Destino);
+            }
+        });
 
         //------------- Actualización de listView
         fActualizar_LV_Categorias(sEmail,sTienda);
         fActualizar_LV_Articulos(sEmail,sTienda);
     }
+    //#########################################################################################################################################
+    //#########################################################################################
+    //#########################################################################################################################################
 
+    //#########################################################################################     NAVEGACIÓN SIMPLE
     void fNavegar (View view){
         Intent Destino=new Intent(this,MainActivity.class);
         startActivity(Destino);
     }
 
-    //############################################ Construcción de ListView de categorias
+    //#########################################################################################     CONSTRUCCIÓN DE LIST VIEW DE CATEGORIAS
     ArrayList<Categ_Entidad> myList;
     Categ_Adaptador myAdapter;
+    List<String> lNombreCategorias = new ArrayList<>();
     void fActualizar_LV_Categorias(final String sEmail, final String sTienda) {
 
         String sPath = "Usuarios/" + sEmail + "/Tiendas/" + sTienda + "/Categorias";
@@ -173,11 +231,17 @@ public class pagProductos extends AppCompatActivity{
                                 listPrevia.get(iSegundo).toString(),
                                 listPrevia.get(iTercero).toString());
                         myList.add(listItems);
+                        lNombreCategorias.add(listPrevia.get(iPrimero).toString()); //Para filtro de articulos por categoría
                         Log.d("Campos: ", listItems.toString());
                     }
-                    //olvCategorias=(ListView)findViewById(R.id.lvCategorias);
                     myAdapter = new Categ_Adaptador(pagProductos.this, myList);
                     olvCategorias.setAdapter(myAdapter);
+
+                    //Visualización de categorias en filtro de articulos por categorias
+                    ArrayAdapter<String> aNombreCategorias=new ArrayAdapter<String>(pagProductos.this,
+                            android.R.layout.simple_spinner_dropdown_item,lNombreCategorias);
+                    ospFiltroArticulos.setAdapter(aNombreCategorias);
+
                 } else {
                     Log.d("Actividad", "Error adquiriendo documentos: ", task.getException());
                 }
@@ -185,7 +249,7 @@ public class pagProductos extends AppCompatActivity{
         });
     }
 
-    //############################################ Construcción de ListView de Artículos
+    //#########################################################################################     CONSTRUCCIÓN DE LIST VIEW DE ARTÍCULOS
     ArrayList<Articulos_Entidad> myList_Art;
     Articulos_Adaptador myAdapter_Art;
     void fActualizar_LV_Articulos(final String sEmail, final String sTienda){
@@ -206,7 +270,7 @@ public class pagProductos extends AppCompatActivity{
 
                         List listPrevia=new ArrayList<>(collection);
                         List listSet=new ArrayList<>(collection2);
-                        int [] PosicionList=new int[20];
+                        int [] PosicionList=new int[12];
                         for (int i=0;i<listSet.size();i++){
                             switch (i){
                                 case 0: PosicionList[i]=fBuscarList("Nombre",listSet);break;
@@ -217,21 +281,12 @@ public class pagProductos extends AppCompatActivity{
                                 case 5: PosicionList[i]=fBuscarList("Stock",listSet);break;
                                 case 6: PosicionList[i]=fBuscarList("Descuento",listSet);break;
                                 case 7: PosicionList[i]=fBuscarList("Codigo Barras",listSet);break;
-                                case 8: PosicionList[i]=fBuscarList("Nom_Var_1",listSet);break;
-                                case 9: PosicionList[i]=fBuscarList("Nom_Var_2",listSet);break;
-                                case 10: PosicionList[i]=fBuscarList("Nom_Var_3",listSet);break;
-                                case 11: PosicionList[i]=fBuscarList("Nom_Var_4",listSet);break;
-                                case 12: PosicionList[i]=fBuscarList("Nom_Var_5",listSet);break;
-                                case 13: PosicionList[i]=fBuscarList("Nom_Var_6",listSet);break;
-                                case 14: PosicionList[i]=fBuscarList("Precio_Var_1",listSet);break;
-                                case 15: PosicionList[i]=fBuscarList("Precio_Var_2",listSet);break;
-                                case 16: PosicionList[i]=fBuscarList("Precio_Var_3",listSet);break;
-                                case 17: PosicionList[i]=fBuscarList("Precio_Var_4",listSet);break;
-                                case 18: PosicionList[i]=fBuscarList("Precio_Var_5",listSet);break;
-                                case 19: PosicionList[i]=fBuscarList("Precio_Var_6",listSet);break;
+                                case 8: PosicionList[i]=fBuscarList("Visualización",listSet);break;
+                                case 9: PosicionList[i]=fBuscarList("Color",listSet);break;
+                                case 10: PosicionList[i]=fBuscarList("Index Color",listSet);break;
+                                case 11: PosicionList[i]=fBuscarList("Uri Imagen",listSet);break;
                             }
                         }
-                        int iPrimero=0,iSegundo=2,iTercero=1;
                         listItems=new Articulos_Entidad(
                                 listPrevia.get(PosicionList[0]).toString(),
                                 listPrevia.get(PosicionList[1]).toString(),
@@ -243,16 +298,9 @@ public class pagProductos extends AppCompatActivity{
                                 Integer.parseInt(listPrevia.get(PosicionList[7]).toString()),
                                 listPrevia.get(PosicionList[8]).toString(),
                                 listPrevia.get(PosicionList[9]).toString(),
-                                listPrevia.get(PosicionList[10]).toString(),
-                                listPrevia.get(PosicionList[11]).toString(),
-                                listPrevia.get(PosicionList[12]).toString(),
-                                listPrevia.get(PosicionList[13]).toString(),
-                                Integer.parseInt(listPrevia.get(PosicionList[14]).toString()),
-                                Integer.parseInt(listPrevia.get(PosicionList[15]).toString()),
-                                Integer.parseInt(listPrevia.get(PosicionList[16]).toString()),
-                                Integer.parseInt(listPrevia.get(PosicionList[17]).toString()),
-                                Integer.parseInt(listPrevia.get(PosicionList[18]).toString()),
-                                Integer.parseInt(listPrevia.get(PosicionList[19]).toString()));
+                                Integer.parseInt(listPrevia.get(PosicionList[10]).toString()),
+                                listPrevia.get(PosicionList[11]).toString());
+
                         myList_Art.add(listItems);
                         Log.d("Campos: ", listItems.toString());
                     }

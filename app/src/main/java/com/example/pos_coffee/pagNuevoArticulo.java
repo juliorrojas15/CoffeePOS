@@ -1,40 +1,55 @@
 package com.example.pos_coffee;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class pagNuevoArticulo extends AppCompatActivity {
-    //Variables que se traen de la pagina de Productos
-    public static final String sTienda="tienda";
-    public static final String psNomArticulo="NomArticulo";
+    //#########################################################################################     //Variables que se traen de la pagina de Productos
+    public static final String psTienda="tienda";
+    public static final String pasDatosArticulos="DatosArticulo";
     public static final String psEditarEliminar="Editar/Eliminar";
 
-
-
-    //Keys de la base de datos
+    //#########################################################################################     //Keys de la base de datos
     public static final String NOMBRE_KEY = "Nombre";
     public static final String CATEGORIA_KEY = "Categoria";
     public static final String PRECIO_KEY = "Precio";
@@ -43,41 +58,37 @@ public class pagNuevoArticulo extends AppCompatActivity {
     public static final String REF_KEY = "Ref";
     public static final String CODIGO_BARRAS_KEY = "Codigo Barras";
     public static final String DESCUENTO_KEY = "Descuento";
-    public static final String N_VAR_1_KEY = "Nom_Var_1";
-    public static final String N_VAR_2_KEY = "Nom_Var_2";
-    public static final String N_VAR_3_KEY = "Nom_Var_3";
-    public static final String N_VAR_4_KEY = "Nom_Var_4";
-    public static final String N_VAR_5_KEY = "Nom_Var_5";
-    public static final String N_VAR_6_KEY = "Nom_Var_6";
-    public static final String P_VAR_1_KEY = "Precio_Var_1";
-    public static final String P_VAR_2_KEY = "Precio_Var_2";
-    public static final String P_VAR_3_KEY = "Precio_Var_3";
-    public static final String P_VAR_4_KEY = "Precio_Var_4";
-    public static final String P_VAR_5_KEY = "Precio_Var_5";
-    public static final String P_VAR_6_KEY = "Precio_Var_6";
-
     public static final String ALARMA_KEY = "Alarma";
+    public static final String VISUALIZACION_KEY = "Visualización";
+    public static final String COLOR_KEY = "Color";
+    public static final String COLOR_INDEX_KEY = "Index Color";
+    public static final String URL_IMAGEN_KEY = "Uri Imagen";
 
-    //Objetos del Layout
+    //#########################################################################################     //Objetos del Layout
     private EditText oetNombre,oetPrecio,oetCosto,oetStock,oetRef,oetCodBarras,oetDescuento;
-    private EditText oetNomVar_1,oetNomVar_2,oetNomVar_3,oetNomVar_4,oetNomVar_5,oetNomVar_6;
-    private EditText oetPrecioVar_1,oetPrecioVar_2,oetPrecioVar_3,oetPrecioVar_4,oetPrecioVar_5,oetPrecioVar_6;
     private RadioGroup orgColores,orgVisualizacion;
-    private RadioButton orbColor;
+    private RadioButton orbColor,orbVisual;
     private Spinner ospCategoria;
     private Button obVolver, obGuardar,obEditar,obEliminar;
+    private final int PICK_PHOTO=1;
+    private ImageView oimArticulo;
 
-
+    //#########################################################################################     Variables Globales
     String sNombreArt,sCategoriaArt,sRefArt;
     int iCostoArt,iPrecioArt,iStockArt,iDescuentoArt,iCodigoBarrasArt;
-    String sNomVar_1,sNomVar_2,sNomVar_3,sNomVar_4,sNomVar_5,sNomVar_6;
-    int iPrecioVar_1,iPrecioVar_2,iPrecioVar_3,iPrecioVar_4,iPrecioVar_5,iPrecioVar_6;
+    private Uri uriImagenPath;
+    private FirebaseAuth mAuth;
 
+
+    //#########################################################################################################################################
+    //#########################################################################################     ON CREATE
+    //#########################################################################################################################################
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pag_nuevo_articulo);
 
+        //#####################################################################################     Relación de objetos con Layout
         obVolver=(Button)findViewById(R.id.bVolver);
         obGuardar=(Button)findViewById(R.id.bGuardar);
         obEditar=(Button)findViewById(R.id.bEditar);
@@ -91,52 +102,65 @@ public class pagNuevoArticulo extends AppCompatActivity {
         oetCodBarras=(EditText)findViewById(R.id.etNuevoCodigoArt);
         oetDescuento=(EditText)findViewById(R.id.etNuevoDescuentoArt);
 
-        oetNomVar_1=(EditText)findViewById(R.id.etNombreArtVar_1);
-        oetNomVar_2=(EditText)findViewById(R.id.etNombreArtVar_2);
-        oetNomVar_3=(EditText)findViewById(R.id.etNombreArtVar_3);
-        oetNomVar_4=(EditText)findViewById(R.id.etNombreArtVar_4);
-        oetNomVar_5=(EditText)findViewById(R.id.etNombreArtVar_5);
-        oetNomVar_6=(EditText)findViewById(R.id.etNombreArtVar_6);
-
-        oetPrecioVar_1=(EditText)findViewById(R.id.etPrecioArtVar_1);
-        oetPrecioVar_2=(EditText)findViewById(R.id.etPrecioArtVar_2);
-        oetPrecioVar_3=(EditText)findViewById(R.id.etPrecioArtVar_3);
-        oetPrecioVar_4=(EditText)findViewById(R.id.etPrecioArtVar_4);
-        oetPrecioVar_5=(EditText)findViewById(R.id.etPrecioArtVar_5);
-        oetPrecioVar_6=(EditText)findViewById(R.id.etPrecioArtVar_6);
-
         orgColores=(RadioGroup)findViewById(R.id.rgColoresArt);
         orgVisualizacion=(RadioGroup)findViewById(R.id.rgVisualizacion);
         ospCategoria=(Spinner)findViewById(R.id.spNuevaCategoriaArt);
+        oimArticulo=(ImageView)findViewById(R.id.imImagenArt);
 
-        //Variables que se traen de otros activities
-        final String sTienda = "Cafe Babilonia";//getIntent().getStringExtra("tienda");
-        final String sEmail="juliorrojas15@gmail.com";//FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-        final String psNomArticulo=getIntent().getStringExtra("NomArticulo");
+        //###################################################################################       Variables que se traen de otros activities
+        final String sTienda =getIntent().getStringExtra("tienda");
+        final String sEmail=FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        final String [] sDatosArticulos=getIntent().getStringArrayExtra("DatosArticulo");
         final String psEditarEliminar=getIntent().getStringExtra("Editar/Eliminar");
 
-        //Visualización o no de botones de edición
+
+        //###################################################################################       Cargas iniciales
+
+        //###################################################################################       Visualización o no de botones de edición
         if (psEditarEliminar.equalsIgnoreCase("Agregar")){
             obGuardar.setVisibility(View.VISIBLE);
             obEditar.setVisibility(View.INVISIBLE);
             obEliminar.setVisibility(View.INVISIBLE);
             oetNombre.setEnabled(true);
+            fNombreCategorias(sEmail,sTienda,"","");
         }
         if(psEditarEliminar.equalsIgnoreCase("Editar/Eliminar")){
             obGuardar.setVisibility(View.INVISIBLE);
             obEditar.setVisibility(View.VISIBLE);
             obEliminar.setVisibility(View.VISIBLE);
-            oetNombre.setText(psNomArticulo);
+            oetNombre.setText(sDatosArticulos[0]);
+            fNombreCategorias(sEmail,sTienda,"Editar",sDatosArticulos[1]);
+            oetPrecio.setText(sDatosArticulos[2]);
+            oetCosto.setText(sDatosArticulos[3]);
+            oetStock.setText(sDatosArticulos[4]);
+            oetRef.setText(sDatosArticulos[5]);
+            oetCodBarras.setText(sDatosArticulos[6]);
+            oetDescuento.setText(sDatosArticulos[7]);
+            if (sDatosArticulos[8].equals("Color")){
+                RadioButton orbVisualActual = (RadioButton) orgVisualizacion.getChildAt(0);
+                orbVisualActual.setChecked(true);
+                RadioButton orbColorActual = (RadioButton) orgColores.getChildAt(Integer.parseInt(sDatosArticulos[10]));
+                orbColorActual.setChecked(true);
+            }
+            else{
+                RadioButton orbVisualActual = (RadioButton) orgVisualizacion.getChildAt(1);
+                orbVisualActual.setChecked(true);
+
+                Glide
+                        .with(this)
+                        .load(sDatosArticulos[11])
+                        .into(oimArticulo);
+            }
             oetNombre.setEnabled(false);
         }
 
 
-
+        //##################################################################################         Acciones de botones
 
         obVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fNavegarSimple(pagProductos.class);
+                fNavegarSimple(pagProductos.class,sTienda);
             }
         });
         obGuardar.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +176,7 @@ public class pagNuevoArticulo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fScanner();
-                fCrearBBDD(sEmail,sTienda);
+                fCrearBBDD(sEmail,sTienda,sDatosArticulos[11]);
             }
         });
         obEliminar.setOnClickListener(new View.OnClickListener() {
@@ -163,39 +187,44 @@ public class pagNuevoArticulo extends AppCompatActivity {
                 fEliminarBBDD(sEmail,sTienda);
             }
         });
-    }
+        oimArticulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fCargarImagen();
+            }
+        });
 
-    void fNavegarSimple(Class clPagina){
+
+
+    }
+    //#########################################################################################################################################
+    //#########################################################################################
+    //#########################################################################################################################################
+
+    //#########################################################################################     NAVEGACIÓN SIMPLE
+    void fNavegarSimple(Class clPagina,String sTienda){
         Intent Destino = new Intent(this,clPagina);
+        Destino.putExtra(pagProductos.spTienda,sTienda);
         startActivity(Destino);
     }
 
+    //#########################################################################################     SCANNER
     void fScanner(){
         sNombreArt=oetNombre.getText().toString();
-        sCategoriaArt="Bebidas";//ospCategoria.getSelectedItem().toString();
+        sCategoriaArt=ospCategoria.getSelectedItem().toString().trim();
         sRefArt=oetRef.getText().toString();
         iCostoArt=Integer.parseInt(oetCosto.getText().toString());
         iPrecioArt=Integer.parseInt(oetPrecio.getText().toString());
         iStockArt=Integer.parseInt(oetStock.getText().toString());
         iDescuentoArt=Integer.parseInt(oetDescuento.getText().toString());
         iCodigoBarrasArt=Integer.parseInt(oetCodBarras.getText().toString());
-        sNomVar_1=oetNomVar_1.getText().toString();
-        sNomVar_2=oetNomVar_2.getText().toString();
-        sNomVar_3=oetNomVar_3.getText().toString();
-        sNomVar_4=oetNomVar_4.getText().toString();
-        sNomVar_5=oetNomVar_5.getText().toString();
-        sNomVar_6=oetNomVar_6.getText().toString();
-        iPrecioVar_1=Integer.parseInt(oetPrecioVar_1.getText().toString());
-        iPrecioVar_2=Integer.parseInt(oetPrecioVar_2.getText().toString());
-        iPrecioVar_3=Integer.parseInt(oetPrecioVar_3.getText().toString());
-        iPrecioVar_4=Integer.parseInt(oetPrecioVar_4.getText().toString());
-        iPrecioVar_5=Integer.parseInt(oetPrecioVar_5.getText().toString());
-        iPrecioVar_6=Integer.parseInt(oetPrecioVar_6.getText().toString());
     }
 
+    //#########################################################################################     REVISIÓN DE NOMBRE
     void fRevisarNombre(final String sEmail,final String sTienda){
 
-        final CollectionReference bd_Articulos= FirebaseFirestore.getInstance().collection("Usuarios/"+sEmail+"/Tiendas/"+sTienda+"/Artículos");
+        final CollectionReference bd_Articulos= FirebaseFirestore.getInstance().
+                collection("Usuarios/"+sEmail+"/Tiendas/"+sTienda+"/Artículos");
         bd_Articulos.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -208,8 +237,8 @@ public class pagNuevoArticulo extends AppCompatActivity {
                             return;
                         }
                     }
-                    fCrearBBDD(sEmail,sTienda);
-                    fNavegarSimple(pagProductos.class);
+                    fCrearBBDD(sEmail,sTienda,"");
+                    fNavegarSimple(pagProductos.class,sTienda);
                 } else {
                     Log.d("Alarma", "Error adquiriendo documentos: ", task.getException());
                 }
@@ -218,10 +247,58 @@ public class pagNuevoArticulo extends AppCompatActivity {
 
     }
 
-    void fCrearBBDD(String sEmail, String sTienda) {
+    //#########################################################################################     CREAR ARTICULO EN BASE DE DATOS
+    void fCrearBBDD(final String sEmail, final String sTienda,final String sUrlActual) {
 
-        /*String sColor;
+
+
+        mAuth=FirebaseAuth.getInstance();
+        //Creación de la carpeta de fotos
+        //mStorageRef=bd_NuevaImagen
+        final StorageReference bd_NuevaImagen= FirebaseStorage.getInstance().getReference();
+
+        if (uriImagenPath!=null){
+            //srImagenArt=fotoRef
+            final StorageReference srImagenArt = bd_NuevaImagen.child("Imagenes").child(mAuth.getCurrentUser()
+                    .getUid()).child(uriImagenPath.getLastPathSegment());
+            srImagenArt.putFile(uriImagenPath).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if(!task.isSuccessful()){
+                        throw new Exception();
+                    }
+                    return srImagenArt.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if(task.isSuccessful()){
+                        Uri uriImagenBD=task.getResult();
+                        fGuardarArticulo(sEmail,sTienda,uriImagenBD.toString());
+                    }
+
+                }
+            });
+        }
+        else{
+            fGuardarArticulo(sEmail,sTienda,sUrlActual);
+        }
+    }
+
+    void fGuardarArticulo(String sEmail,String sTienda,String uriImagenBD){
+        //obtener tipo de visualización
+        final String sVisualizacion;
+        int iVisualSeleccionada=orgVisualizacion.getCheckedRadioButtonId();
+        orbVisual=(RadioButton)findViewById(iVisualSeleccionada);
+        int iVisualizacion=orgVisualizacion.indexOfChild(orbVisual);
+        switch (iVisualizacion){
+            case 0: sVisualizacion="Color";break;
+            case 1: sVisualizacion="Imagen";break;
+            default: sVisualizacion="Color";
+        }
+
         //obtener color seleccionado
+        final String sColor;
         int iColorSeleccionado=orgColores.getCheckedRadioButtonId();
         orbColor=(RadioButton)findViewById(iColorSeleccionado);
         int iColor=orgColores.indexOfChild(orbColor);
@@ -236,11 +313,8 @@ public class pagNuevoArticulo extends AppCompatActivity {
             case 7: sColor="#FFEB3B";break;
             case 8: sColor="#FFC107";break;
             default: sColor = "#FFFFFF";
-        }*/
-
-        //oetNomCategoria.setBackgroundColor(Color.parseColor(sColor));
-
-        //Nueva Categoria
+        }
+        //Nuevo Articulo
         DocumentReference bd_NuevoArticulo = FirebaseFirestore.getInstance()
                 .document("Usuarios/"+sEmail+"/Tiendas/"+sTienda+"/Artículos/"+sNombreArt);
 
@@ -254,18 +328,10 @@ public class pagNuevoArticulo extends AppCompatActivity {
         bd_GuardarArticulo.put( REF_KEY,sRefArt);
         bd_GuardarArticulo.put( CODIGO_BARRAS_KEY,iCodigoBarrasArt);
         bd_GuardarArticulo.put( DESCUENTO_KEY,iDescuentoArt);
-        bd_GuardarArticulo.put( N_VAR_1_KEY,sNomVar_1);
-        bd_GuardarArticulo.put( N_VAR_2_KEY,sNomVar_2);
-        bd_GuardarArticulo.put( N_VAR_3_KEY,sNomVar_3);
-        bd_GuardarArticulo.put( N_VAR_4_KEY,sNomVar_4);
-        bd_GuardarArticulo.put( N_VAR_5_KEY,sNomVar_5);
-        bd_GuardarArticulo.put( N_VAR_6_KEY,sNomVar_6);
-        bd_GuardarArticulo.put( P_VAR_1_KEY,iPrecioVar_1);
-        bd_GuardarArticulo.put( P_VAR_2_KEY,iPrecioVar_2);
-        bd_GuardarArticulo.put( P_VAR_3_KEY,iPrecioVar_3);
-        bd_GuardarArticulo.put( P_VAR_4_KEY,iPrecioVar_4);
-        bd_GuardarArticulo.put( P_VAR_5_KEY,iPrecioVar_5);
-        bd_GuardarArticulo.put( P_VAR_6_KEY,iPrecioVar_6);
+        bd_GuardarArticulo.put(VISUALIZACION_KEY,sVisualizacion);
+        bd_GuardarArticulo.put(COLOR_KEY,sColor);
+        bd_GuardarArticulo.put(COLOR_INDEX_KEY,iColor);
+        bd_GuardarArticulo.put(URL_IMAGEN_KEY,uriImagenBD.toString());
 
         bd_NuevoArticulo.set(bd_GuardarArticulo).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -280,9 +346,10 @@ public class pagNuevoArticulo extends AppCompatActivity {
                 Log.d(ALARMA_KEY,"Documento NO fue guardado");
             }
         });
-        fNavegarSimple(pagProductos.class);
+        fNavegarSimple(pagProductos.class,sTienda);
     }
 
+    //#########################################################################################     ELIMINAR ARTICULO EN BASE DE DATOS
     void fEliminarBBDD(String sEmail, String sTienda){
         DocumentReference bd_EliminarArticulo = FirebaseFirestore.getInstance()
                 .document("Usuarios/"+sEmail+"/Tiendas/"+sTienda+"/Artículos/"+sNombreArt);
@@ -302,6 +369,62 @@ public class pagNuevoArticulo extends AppCompatActivity {
                         Toast.makeText(pagNuevoArticulo.this,"No se ha podido eliminar el Artículo",Toast.LENGTH_LONG).show();
                     }
                 });
-        fNavegarSimple(pagProductos.class);
+        fNavegarSimple(pagProductos.class,sTienda);
     }
+
+    //#########################################################################################     SPINNER DE CATEGORIAS
+    void fNombreCategorias(String sEmail, String sTienda, final String sEditar_Crear, final String sDatoCategoria){
+        Collection cCategorias;
+        CollectionReference bd_Tiendas= FirebaseFirestore.getInstance().collection("Usuarios/"+sEmail+"/Tiendas/"+sTienda+"/Categorias");
+        bd_Tiendas.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    List<String> list = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        list.add(document.getId());
+                    }
+                    Log.d("Alarma", list.toString());
+                    ArrayAdapter Adapter = new ArrayAdapter(pagNuevoArticulo.this,android.R.layout.simple_spinner_dropdown_item,list);
+                    ospCategoria.setAdapter(Adapter);
+                    ospCategoria.setSelection(0);
+                    if (sEditar_Crear.equals("Editar")){
+                        for (int i=0;i<ospCategoria.getCount();i++){
+                            if (ospCategoria.getItemAtPosition(i).toString().equalsIgnoreCase(sDatoCategoria)){
+                                ospCategoria.setSelection(i);
+                            }
+                        }
+                    }
+                } else {
+                    Log.d("Alarma", "Error adquiriendo documentos: ", task.getException());
+                }
+            }
+        });
+    }
+
+    //#########################################################################################     CARGAR IMAGEN
+    void fCargarImagen(){
+
+        Intent intent=new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Seleccione una imagen"),PICK_PHOTO);
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==PICK_PHOTO && resultCode==RESULT_OK && data!= null && data.getData()!= null){
+            uriImagenPath=data.getData();
+            try {
+                Bitmap bitmapImagen= MediaStore.Images.Media.getBitmap(getContentResolver(),uriImagenPath);
+                oimArticulo.setImageBitmap(bitmapImagen);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
 }
