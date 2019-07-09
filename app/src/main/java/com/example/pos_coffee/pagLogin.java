@@ -1,7 +1,9 @@
 package com.example.pos_coffee;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,6 +49,27 @@ public class pagLogin extends AppCompatActivity {
     String sEmail,sClave,sTienda;
     public static final String TAG = "Resultado";
 
+    public static String gsUsuario="Sin Usuario";
+    public static String gsTienda;
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        SharedPreferences sharedUsuario=getPreferences(context.MODE_PRIVATE);
+        gsUsuario=sharedUsuario.getString("Usuario","No hay Usuario");
+        SharedPreferences sharedTienda=getPreferences(context.MODE_PRIVATE);
+        gsTienda=sharedTienda.getString("Tienda","No hay Tienda");
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Toast.makeText(this, "Usuario: " + gsUsuario + ", Tienda: " + gsTienda, Toast.LENGTH_LONG).show();
+            if (!gsUsuario.equals(null) && !gsUsuario.equals("Sin Usuario")) {
+                Intent Destino = new Intent(this, MainActivity.class);
+                startActivity(Destino);
+            }
+        }
+    }
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +77,11 @@ public class pagLogin extends AppCompatActivity {
 
         //Comunicación con usuarios Firebase
         mAuth=FirebaseAuth.getInstance();
+
+        //Variables a memorizar incluso cerrada la aplicación
+        context =this;
+        SharedPreferences sharedPref=getSharedPreferences("DatosPOS_Coffee",context.MODE_PRIVATE);
+
 
         //Declaración de objetos del Layout
         oUsuario =(EditText)findViewById(R.id.etUsuario);
@@ -155,7 +185,6 @@ public class pagLogin extends AppCompatActivity {
                             oOlvideClave.setEnabled(false);
                             oTienda.setVisibility(View.VISIBLE);
                             oCancelar.setVisibility(View.VISIBLE);
-                            oIngresar.setVisibility(View.VISIBLE);
                             fCargarTiendas();
                             oProgressDialog.dismiss();
                         }
@@ -177,9 +206,21 @@ public class pagLogin extends AppCompatActivity {
             return;
         }
         else{
+            gsUsuario=sEmail;
+            gsTienda=sTienda;
+
+            SharedPreferences sharedUsuario =getPreferences(context.MODE_PRIVATE);
+            SharedPreferences.Editor editorUsuario=sharedUsuario.edit();
+            editorUsuario.putString("Usuario",gsUsuario);
+            editorUsuario.commit();
+            SharedPreferences sharedTienda =getPreferences(context.MODE_PRIVATE);
+            SharedPreferences.Editor editorTienda=sharedTienda.edit();
+            editorTienda.putString("Tienda",gsTienda);
+            editorTienda.commit();
+
+
+
             Intent Destino=new Intent(getApplication(),MainActivity.class);
-            Destino.putExtra(MainActivity.sUsuario,sEmail);
-            Destino.putExtra(MainActivity.sTienda,sTienda);
             startActivity(Destino);
         }
 
@@ -215,6 +256,9 @@ public class pagLogin extends AppCompatActivity {
                     Log.d(TAG, list.toString());
                     ArrayAdapter Adapter = new ArrayAdapter(pagLogin.this,android.R.layout.simple_spinner_dropdown_item,list);
                     oTienda.setAdapter(Adapter);
+                    if (task.isComplete()){
+                        oIngresar.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     Log.d(TAG, "Error adquiriendo documentos: ", task.getException());
                 }

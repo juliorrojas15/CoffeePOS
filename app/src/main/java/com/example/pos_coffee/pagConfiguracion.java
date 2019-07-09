@@ -38,9 +38,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.pos_coffee.pagLogin.gsTienda;
+import static com.example.pos_coffee.pagLogin.gsUsuario;
+
 public class pagConfiguracion extends AppCompatActivity {
     //Variables que se traen del login
-    public static final String sTienda="tienda";
+    public static final String spTienda="tienda";
 
 
     public static final String NOMBRE_KEY = "Nombre";
@@ -61,7 +64,7 @@ public class pagConfiguracion extends AppCompatActivity {
     private EditText oNomPersonalNuevo,oClavePersonalNuevo;
     private Spinner oPerfilPersonalNuevo;
 
-
+    String sTienda,sEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,21 +84,25 @@ public class pagConfiguracion extends AppCompatActivity {
         oPerfilPersonalNuevo=(Spinner)findViewById(R.id.spPerfilPersonalNuevo);
 
         //Variables que se traen de otros activities
-        final String sTienda = "Cafe Babilonia";//getIntent().getStringExtra("tienda");
-        final String sEmail="juliorrojas15@gmail.com";//FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        sTienda = gsUsuario;
+        sEmail=gsTienda;
 
         oCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(pagConfiguracion.this,"Gracias... ¡Vuelve pronto!",Toast.LENGTH_SHORT).show();
+                gsUsuario="Sin Usuario";
+                gsTienda="";
                 fNavegar(pagLogin.class);
+
             }
         });
         oVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fNavegar(MainActivity.class);
+                finish();
+                //fNavegar(MainActivity.class);
             }
         });
 

@@ -19,7 +19,7 @@
 
     <string name="menu_despejar">Borrar Ticket</string>
     <string name="menu_unir">Unir Ticket</string>
-    <!--####################################################    Mis Strings-->
+    <!--####################################################    Pagina principal de ventas-->
 
     <string name="Empresa">Cafe Babilonia</string>
     <string name="Eslogan_empresa">Gracias por tu trabajo</string>
@@ -28,6 +28,9 @@
     <string name="Cobrar"> COBRAR</string>
 
     <string name="Buscar_Producto">Buscar producto</string>
+    <string name="TituloListaTickets">Tickets Abiertos</string>
+    <string name="BotonListaTickets"> + Ticket</string>
+
 
     <string name="EliminarDeLista">Eliminar</string>
     <string name="CancelarEliminarDeLista">Cancelar</string>
@@ -148,16 +151,6 @@
     <string name="CodigoBarrasArticulo">Código de Barras</string>
     <string name="DescuentoArticulo">Descuento (%)</string>
     <string name="StockArticulo">Stock</string>
-    <!--
-    <string name="NombreVariante1">Nombre variante 1</string>
-    <string name="NombreVariante2">Nombre variante 2</string>
-    <string name="NombreVariante3">Nombre variante 3</string>
-    <string name="NombreVariante4">Nombre variante 4</string>
-    <string name="NombreVariante5">Nombre variante 5</string>
-    <string name="NombreVariante6">Nombre variante 6</string>
-    <string name="PrecioVariante">Precio</string>
-    <string name="CostoVariante">Costo</string>
--->
 
 
     <string name="TipoVisualización">Visualización</string>

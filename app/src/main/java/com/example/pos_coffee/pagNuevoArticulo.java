@@ -1,6 +1,7 @@
 package com.example.pos_coffee;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -203,9 +204,10 @@ public class pagNuevoArticulo extends AppCompatActivity {
 
     //#########################################################################################     NAVEGACIÓN SIMPLE
     void fNavegarSimple(Class clPagina,String sTienda){
-        Intent Destino = new Intent(this,clPagina);
-        Destino.putExtra(pagProductos.spTienda,sTienda);
-        startActivity(Destino);
+        //Intent Destino = new Intent(this,clPagina);
+        //Destino.putExtra(pagProductos.spTienda,sTienda);
+        //startActivity(Destino);
+        finish();
     }
 
     //#########################################################################################     SCANNER
@@ -333,12 +335,18 @@ public class pagNuevoArticulo extends AppCompatActivity {
         bd_GuardarArticulo.put(COLOR_INDEX_KEY,iColor);
         bd_GuardarArticulo.put(URL_IMAGEN_KEY,uriImagenBD.toString());
 
+        final ProgressDialog progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Creando o Editando Artículo");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
         bd_NuevoArticulo.set(bd_GuardarArticulo).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d(ALARMA_KEY,"El Artículo ha sido guardado");
                 Toast.makeText(pagNuevoArticulo.this,"El Artículo ha sido guardado",Toast.LENGTH_LONG).show();
-
+                progressDialog.cancel();
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -346,11 +354,15 @@ public class pagNuevoArticulo extends AppCompatActivity {
                 Log.d(ALARMA_KEY,"Documento NO fue guardado");
             }
         });
-        fNavegarSimple(pagProductos.class,sTienda);
+        //fNavegarSimple(pagProductos.class,sTienda);
     }
 
     //#########################################################################################     ELIMINAR ARTICULO EN BASE DE DATOS
     void fEliminarBBDD(String sEmail, String sTienda){
+        final ProgressDialog progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Eliminando");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
         DocumentReference bd_EliminarArticulo = FirebaseFirestore.getInstance()
                 .document("Usuarios/"+sEmail+"/Tiendas/"+sTienda+"/Artículos/"+sNombreArt);
         bd_EliminarArticulo
@@ -360,7 +372,8 @@ public class pagNuevoArticulo extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Log.d("Alarma", "DocumentSnapshot successfully deleted!");
                         Toast.makeText(pagNuevoArticulo.this,"Artículo eliminado",Toast.LENGTH_LONG).show();
-
+                        progressDialog.cancel();
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -369,7 +382,7 @@ public class pagNuevoArticulo extends AppCompatActivity {
                         Toast.makeText(pagNuevoArticulo.this,"No se ha podido eliminar el Artículo",Toast.LENGTH_LONG).show();
                     }
                 });
-        fNavegarSimple(pagProductos.class,sTienda);
+        //fNavegarSimple(pagProductos.class,sTienda);
     }
 
     //#########################################################################################     SPINNER DE CATEGORIAS

@@ -1,5 +1,6 @@
 package com.example.pos_coffee;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,9 +35,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.pos_coffee.pagLogin.gsTienda;
+import static com.example.pos_coffee.pagLogin.gsUsuario;
+
 public class pagNuevaCategoria extends AppCompatActivity {
     //Variables que se traen de la pagina de Productos
-    public static final String sTienda="tienda";
+    public static final String psTienda="tienda";
     public static final String psNomCategoria="NomCategoria";
     public static final String psColorCategoria="ColorCategoria";
     public static final String psEditarEliminar="Editar/Eliminar";
@@ -56,6 +62,8 @@ public class pagNuevaCategoria extends AppCompatActivity {
 
     int iNombreIgual=0;
     String sNombreCategoria;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +79,8 @@ public class pagNuevaCategoria extends AppCompatActivity {
 
 
         //Variables que se traen de otros activities
-        final String sTienda = "Cafe Babilonia";//getIntent().getStringExtra("tienda");
-        final String sEmail="juliorrojas15@gmail.com";//FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        final String sTienda = gsTienda;
+        final String sEmail= gsUsuario;
         final String psNomCategoria=getIntent().getStringExtra("NomCategoria");
         final String psColorCategoria=getIntent().getStringExtra("ColorCategoria");
         final String psEditarEliminar=getIntent().getStringExtra("Editar/Eliminar");
@@ -132,6 +140,7 @@ public class pagNuevaCategoria extends AppCompatActivity {
         startActivity(Destino);
     }
 
+    //private ProgressDialog progressDialog=new ProgressDialog(this);
 
     void fRevisarNombre(final String sEmail,final String sTienda){
 
@@ -190,12 +199,18 @@ public class pagNuevaCategoria extends AppCompatActivity {
         bd_GuardarCategoria.put(CANT_DE_ARTICULOS_KEY,"0");
         bd_GuardarCategoria.put(COLOR_KEY,sColor);
 
+        final ProgressDialog progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Creando o Editando Categoría");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
         bd_NuevaCategoria.set(bd_GuardarCategoria).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d(ALARMA_KEY,"La Categoria ha sido guardada");
                 Toast.makeText(pagNuevaCategoria.this,"La Categoria ha sido guardada",Toast.LENGTH_LONG).show();
-
+                progressDialog.cancel();
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -203,10 +218,14 @@ public class pagNuevaCategoria extends AppCompatActivity {
                 Log.d(ALARMA_KEY,"Documento NO fue guardado");
             }
         });
-        fNavegarSimple(pagProductos.class);
+        //fNavegarSimple(pagProductos.class);
     }
 
     void fEliminarBBDD(String sEmail, String sTienda){
+        final ProgressDialog progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Eliminando");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
         DocumentReference bd_EliminarCategoria = FirebaseFirestore.getInstance()
                 .document("Usuarios/"+sEmail+"/Tiendas/"+sTienda+"/Categorias/"+sNombreCategoria);
                 bd_EliminarCategoria
@@ -216,7 +235,8 @@ public class pagNuevaCategoria extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Log.d("Alarma", "DocumentSnapshot successfully deleted!");
                         Toast.makeText(pagNuevaCategoria.this,"Categoria eliminada",Toast.LENGTH_LONG).show();
-
+                        progressDialog.cancel();
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -225,7 +245,7 @@ public class pagNuevaCategoria extends AppCompatActivity {
                         Toast.makeText(pagNuevaCategoria.this,"No se ha podido eliminar la Categoría",Toast.LENGTH_LONG).show();
                     }
                 });
-        fNavegarSimple(pagProductos.class);
+        //fNavegarSimple(pagProductos.class);
     }
 
 }

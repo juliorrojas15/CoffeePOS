@@ -16,6 +16,13 @@ public class pagGuardar extends AppCompatActivity {
         setContentView(R.layout.activity_pag_guardar);
         obCancelar=(Button)findViewById(R.id.bCancelar);
 
+        obCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     void fNavegar(View view){

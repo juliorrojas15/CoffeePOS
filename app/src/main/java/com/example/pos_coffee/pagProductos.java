@@ -34,7 +34,21 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.example.pos_coffee.pagLogin.gsTienda;
+import static com.example.pos_coffee.pagLogin.gsUsuario;
+
 public class pagProductos extends AppCompatActivity{
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        sUsuario= gsUsuario;
+        sTienda=gsTienda;
+        Toast.makeText(this,"Listas Actualizadas",Toast.LENGTH_SHORT).show();
+        fActualizar_LV_Articulos(sUsuario,sTienda);
+        fActualizar_LV_Categorias(sUsuario,sTienda);
+    }
+
 
     //#########################################################################################     //Variables que se traen de la pagina de Productos
     //public static final String spEmail="email";
@@ -50,7 +64,8 @@ public class pagProductos extends AppCompatActivity{
     Spinner ospFiltroArticulos;
 
     //#########################################################################################     Variables Globales
-
+    String sUsuario;
+    String sTienda;
 
     //#########################################################################################################################################
     //#########################################################################################     ON CREATE
@@ -72,8 +87,6 @@ public class pagProductos extends AppCompatActivity{
         ospFiltroArticulos=(Spinner)findViewById(R.id.spFiltroArticulos);
 
         //###################################################################################       Variables que se traen de otros activities
-        final String sTienda = getIntent().getStringExtra("tienda");
-        final String sEmail= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
 
         //###################################################################################       Filtros de los ListView
         oetFiltroCategorias.addTextChangedListener(new TextWatcher() {
@@ -120,8 +133,9 @@ public class pagProductos extends AppCompatActivity{
         obVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Destino=new Intent(pagProductos.this,MainActivity.class);
-                startActivity(Destino);
+                finish();
+                //Intent Destino=new Intent(pagProductos.this,MainActivity.class);
+                //startActivity(Destino);
             }
         });
         obAgregarCategoria.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +145,7 @@ public class pagProductos extends AppCompatActivity{
 
                 Intent Destino=new Intent(getApplication(),pagNuevaCategoria.class);
                 Destino.putExtra(pagNuevaCategoria.psEditarEliminar,psEditarEliminar);
+                Destino.putExtra(pagNuevaCategoria.psTienda,sTienda);
                 startActivity(Destino);
             }
         });
@@ -160,7 +175,8 @@ public class pagProductos extends AppCompatActivity{
                 Destino.putExtra(pagNuevaCategoria.psNomCategoria,psNomCategoria);
                 Destino.putExtra(pagNuevaCategoria.psColorCategoria,psColCategoria);
                 Destino.putExtra(pagNuevaCategoria.psEditarEliminar,psEditarEliminar);
-                startActivity(Destino);
+                Destino.putExtra(pagNuevaCategoria.psTienda,sTienda);
+                startActivityForResult(Destino,1);
             }
         });
         olvArticulos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -194,8 +210,8 @@ public class pagProductos extends AppCompatActivity{
         });
 
         //------------- Actualización de listView
-        fActualizar_LV_Categorias(sEmail,sTienda);
-        fActualizar_LV_Articulos(sEmail,sTienda);
+        //fActualizar_LV_Categorias(sEmail,sTienda);
+        //fActualizar_LV_Articulos(sEmail,sTienda);
     }
     //#########################################################################################################################################
     //#########################################################################################

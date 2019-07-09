@@ -19,8 +19,10 @@
     <color name="EnviarRelleno">#FFEB3B</color>
     <color name="EnviarBorde">#FFC107</color>
 
-    <color name="VerdeTickets">#D9FFAD</color>
+    <color name="VerdeTickets">#E8FFCF</color>
     <color name="GrisTickets">#E7E7E7</color>
+    <color name="GrisFondo">#B2E7E7E7</color>
+
 
     <!--Color de botones para categorias-->
     <color name="CategRojo">#F44336</color>
