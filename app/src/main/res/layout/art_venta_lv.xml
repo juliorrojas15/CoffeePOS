@@ -41,8 +41,37 @@
             android:textColor="@color/Negro"
             android:textSize="24sp"
             android:textAlignment="textEnd" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:weightSum="3"
+        android:gravity="center_vertical">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/txt_delete"
+            android:gravity="center_vertical"
+            android:text="@string/SwipeEliminar"
+            android:textSize="18sp"
+            android:clickable="false"
+            android:layout_weight="2"
+            android:hapticFeedbackEnabled="true"
+            android:textColor="@color/RojoBorde"/>
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/txt_undo"
+            android:text="@string/SwipeDejar"
+            android:textSize="18sp"
+            android:clickable="false"
+            android:layout_weight="1"
+            android:textColor="@color/VerdeBorde"/>
 
     </LinearLayout>
 </RelativeLayout>

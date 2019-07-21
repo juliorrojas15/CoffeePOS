@@ -58,7 +58,7 @@ public class pagConfiguracion extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private Button oVolver,oCerrarSesion,oNuevaTienda,oNuevoPersonal;
-    private TextView oUsuario;
+    private TextView otvUsuario;
     private ListView oTiendas_LV,oPersonal_LV;
     private EditText oNomTiendaNueva,oDirTiendaNueva,oTelTiendaNueva;
     private EditText oNomPersonalNuevo,oClavePersonalNuevo;
@@ -75,7 +75,7 @@ public class pagConfiguracion extends AppCompatActivity {
         oCerrarSesion=(Button)findViewById(R.id.bCerrarSesion);
         oNuevaTienda=(Button)findViewById(R.id.bNuevaTienda);
         oNuevoPersonal=(Button)findViewById(R.id.bNuevoPersonal);
-        oUsuario=(TextView)findViewById(R.id.tvUsuario);
+        otvUsuario=(TextView)findViewById(R.id.tvUsuario);
         oNomTiendaNueva=(EditText)findViewById(R.id.etNomTiendaNueva);
         oDirTiendaNueva=(EditText)findViewById(R.id.etDirTiendaNueva);
         oTelTiendaNueva=(EditText)findViewById(R.id.etTelTiendaNueva);
@@ -84,8 +84,10 @@ public class pagConfiguracion extends AppCompatActivity {
         oPerfilPersonalNuevo=(Spinner)findViewById(R.id.spPerfilPersonalNuevo);
 
         //Variables que se traen de otros activities
-        sTienda = gsUsuario;
-        sEmail=gsTienda;
+        sTienda = gsTienda;
+        sEmail=gsUsuario;
+
+        otvUsuario.setText("Hola... "+sEmail+", están en tu tienda "+sTienda);
 
         oCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -121,14 +121,22 @@ public class pagProductos extends AppCompatActivity{
 
             }
         });
-/*
-        ospFiltroArticulos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //Filtro del spinner
+        ospFiltroArticulos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                pagProductos.this.myAdapter_Art.getFilter().filter(Long.toString(myAdapter_Art.getItemId(position)));
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String sCategoriaFiltrada = ospFiltroArticulos.getSelectedItem().toString();
+                if (!sCategoriaFiltrada.equals("")){
+                    pagProductos.this.myAdapter_Art.getFilter().filter(sCategoriaFiltrada);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-*/
+
+
         //##################################################################################         Acciones de botones
         obVolver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,18 +234,20 @@ public class pagProductos extends AppCompatActivity{
     //#########################################################################################     CONSTRUCCIÓN DE LIST VIEW DE CATEGORIAS
     ArrayList<Categ_Entidad> myList;
     Categ_Adaptador myAdapter;
-    List<String> lNombreCategorias = new ArrayList<>();
+
     void fActualizar_LV_Categorias(final String sEmail, final String sTienda) {
 
         String sPath = "Usuarios/" + sEmail + "/Tiendas/" + sTienda + "/Categorias";
         CollectionReference bd_Datos = FirebaseFirestore.getInstance().collection(sPath);
-
+        final List<String> lNombreCategorias = new ArrayList<>();
+        //lNombreCategorias.add("");
         bd_Datos.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     myList = new ArrayList<>();
                     Categ_Entidad listItems;
+                    lNombreCategorias.add("Todas");
                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                         Collection collection = document.getData().values();
@@ -252,9 +262,9 @@ public class pagProductos extends AppCompatActivity{
                     }
                     myAdapter = new Categ_Adaptador(pagProductos.this, myList);
                     olvCategorias.setAdapter(myAdapter);
-
+                    ArrayAdapter<String> aNombreCategorias;
                     //Visualización de categorias en filtro de articulos por categorias
-                    ArrayAdapter<String> aNombreCategorias=new ArrayAdapter<String>(pagProductos.this,
+                    aNombreCategorias=new ArrayAdapter<String>(pagProductos.this,
                             android.R.layout.simple_spinner_dropdown_item,lNombreCategorias);
                     ospFiltroArticulos.setAdapter(aNombreCategorias);
 

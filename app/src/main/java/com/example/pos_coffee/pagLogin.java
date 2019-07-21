@@ -56,6 +56,7 @@ public class pagLogin extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
+        //###################################################################################       Codigo para leer variables dentro del mismo dispositivo
         SharedPreferences sharedUsuario=getPreferences(context.MODE_PRIVATE);
         gsUsuario=sharedUsuario.getString("Usuario","No hay Usuario");
         SharedPreferences sharedTienda=getPreferences(context.MODE_PRIVATE);

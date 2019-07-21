@@ -28,6 +28,7 @@
     <string name="Cobrar"> COBRAR</string>
 
     <string name="Buscar_Producto">Buscar producto</string>
+    <string name="Filtrar_Por_categoria">Filtrar Por categoria: </string>
     <string name="TituloListaTickets">Tickets Abiertos</string>
     <string name="BotonListaTickets"> + Ticket</string>
 
@@ -56,6 +57,9 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <string name="SwipeEliminar">Eliminar</string>
+    <string name="SwipeDejar">Dejar en lista</string>
 
     <!-- ################################################### Paginas de Login-->
     <string name="Ingresar_eMail">Ingresar eMail *</string>

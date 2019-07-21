@@ -44,6 +44,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.pos_coffee.pagLogin.gsTienda;
+import static com.example.pos_coffee.pagLogin.gsUsuario;
+
 public class pagNuevoArticulo extends AppCompatActivity {
     //#########################################################################################     //Variables que se traen de la pagina de Productos
     public static final String psTienda="tienda";
@@ -109,8 +112,8 @@ public class pagNuevoArticulo extends AppCompatActivity {
         oimArticulo=(ImageView)findViewById(R.id.imImagenArt);
 
         //###################################################################################       Variables que se traen de otros activities
-        final String sTienda =getIntent().getStringExtra("tienda");
-        final String sEmail=FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        final String sTienda =gsTienda;
+        final String sEmail=gsUsuario;
         final String [] sDatosArticulos=getIntent().getStringArrayExtra("DatosArticulo");
         final String psEditarEliminar=getIntent().getStringExtra("Editar/Eliminar");
 
@@ -161,7 +164,7 @@ public class pagNuevoArticulo extends AppCompatActivity {
         obVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fNavegarSimple(pagProductos.class,sTienda);
+                fNavegarSimple(pagProductos.class);
             }
         });
         obGuardar.setOnClickListener(new View.OnClickListener() {
@@ -203,11 +206,9 @@ public class pagNuevoArticulo extends AppCompatActivity {
     //#########################################################################################################################################
 
     //#########################################################################################     NAVEGACIÓN SIMPLE
-    void fNavegarSimple(Class clPagina,String sTienda){
-        //Intent Destino = new Intent(this,clPagina);
-        //Destino.putExtra(pagProductos.spTienda,sTienda);
-        //startActivity(Destino);
-        finish();
+    void fNavegarSimple(Class clPagina){
+        Intent Destino = new Intent(this,clPagina);
+        startActivity(Destino);
     }
 
     //#########################################################################################     SCANNER
@@ -240,7 +241,7 @@ public class pagNuevoArticulo extends AppCompatActivity {
                         }
                     }
                     fCrearBBDD(sEmail,sTienda,"");
-                    fNavegarSimple(pagProductos.class,sTienda);
+
                 } else {
                     Log.d("Alarma", "Error adquiriendo documentos: ", task.getException());
                 }
@@ -346,7 +347,7 @@ public class pagNuevoArticulo extends AppCompatActivity {
                 Log.d(ALARMA_KEY,"El Artículo ha sido guardado");
                 Toast.makeText(pagNuevoArticulo.this,"El Artículo ha sido guardado",Toast.LENGTH_LONG).show();
                 progressDialog.cancel();
-                finish();
+                fNavegarSimple(pagProductos.class);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -354,7 +355,6 @@ public class pagNuevoArticulo extends AppCompatActivity {
                 Log.d(ALARMA_KEY,"Documento NO fue guardado");
             }
         });
-        //fNavegarSimple(pagProductos.class,sTienda);
     }
 
     //#########################################################################################     ELIMINAR ARTICULO EN BASE DE DATOS

@@ -93,9 +93,10 @@ public class Art_Disp_Adaptador extends BaseAdapter implements Filterable {
             if(constraint!=null && constraint.length()>0) {
                 constraint = constraint.toString().toUpperCase();
                 ArrayList<Articulos_Entidad> filters = new ArrayList<>();
+                Articulos_Entidad articulos_entidad;
                 for (int i = 0; i < tempArray.size(); i++) {
                     if (tempArray.get(i).getsNombreArt().toUpperCase().contains(constraint)) {
-                        Articulos_Entidad articulos_entidad = new Articulos_Entidad(tempArray.get(i).getsNombreArt(),
+                        articulos_entidad = new Articulos_Entidad(tempArray.get(i).getsNombreArt(),
                                 tempArray.get(i).getsCategoriaArt(),
                                 tempArray.get(i).getsRefArt(),
                                 tempArray.get(i).getiCostoArt(),
@@ -108,6 +109,40 @@ public class Art_Disp_Adaptador extends BaseAdapter implements Filterable {
                                 tempArray.get(i).getiIndexColor(),
                                 tempArray.get(i).getsUriImagen());
                         filters.add(articulos_entidad);
+                    }
+                    else{
+                        if(tempArray.get(i).getsCategoriaArt().toUpperCase().contains(constraint) && constraint!="Todas"){
+                            articulos_entidad = new Articulos_Entidad(tempArray.get(i).getsNombreArt(),
+                                    tempArray.get(i).getsCategoriaArt(),
+                                    tempArray.get(i).getsRefArt(),
+                                    tempArray.get(i).getiCostoArt(),
+                                    tempArray.get(i).getiPrecioArt(),
+                                    tempArray.get(i).getiStockArt(),
+                                    tempArray.get(i).getiDescuentoArt(),
+                                    tempArray.get(i).getiCodigoBarrasArt(),
+                                    tempArray.get(i).getsTipoVisualizacion(),
+                                    tempArray.get(i).getsColor(),
+                                    tempArray.get(i).getiIndexColor(),
+                                    tempArray.get(i).getsUriImagen());
+                            filters.add(articulos_entidad);
+                        }
+                        else{
+                            if(((String) constraint).equalsIgnoreCase("Todas")){
+                                articulos_entidad = new Articulos_Entidad(tempArray.get(i).getsNombreArt(),
+                                        tempArray.get(i).getsCategoriaArt(),
+                                        tempArray.get(i).getsRefArt(),
+                                        tempArray.get(i).getiCostoArt(),
+                                        tempArray.get(i).getiPrecioArt(),
+                                        tempArray.get(i).getiStockArt(),
+                                        tempArray.get(i).getiDescuentoArt(),
+                                        tempArray.get(i).getiCodigoBarrasArt(),
+                                        tempArray.get(i).getsTipoVisualizacion(),
+                                        tempArray.get(i).getsColor(),
+                                        tempArray.get(i).getiIndexColor(),
+                                        tempArray.get(i).getsUriImagen());
+                                filters.add(articulos_entidad);
+                            }
+                        }
                     }
                 }
                 results.count=filters.size();
