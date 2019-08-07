@@ -20,6 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <RadioGroup
+            android:id="@+id/rgTipoCliente"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -31,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:text="@string/Cliente_Existente"
-                android:textSize="42sp" />
+                android:textSize="32sp" />
 
             <RadioButton
                 android:id="@+id/rbClienteNuevo"
@@ -39,7 +40,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:text="@string/Cliente_Nuevo"
-                android:textSize="42sp" />
+                android:textSize="32sp" />
 
         </RadioGroup>
 
@@ -63,13 +64,16 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:inputType="text"
+                    android:textSize="18sp"
                     android:hint="@string/Buscar_Cliente" />
 
                 <ListView
+                    android:id="@+id/lvClientes"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="4"
-                    android:background="#EEEEEE">
+                    android:background="#EEEEEE"
+                    android:layout_margin="10dp">
 
                 </ListView>
                 <TextView
@@ -104,7 +108,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:orientation="vertical"
-                android:weightSum="10">
+                android:weightSum="10"
+                android:background="@color/GrisFondo">
 
                 <EditText
                     android:id="@+id/etNombreClienteNuevo"
@@ -123,16 +128,50 @@
                 <TextView
                     android:id="@+id/tvEstaCuenta_2"
                     style="@style/TextosPagGuardar"
+                    android:textAlignment="center"
+                    android:textSize="32sp"
                     android:text="@string/Esta_Cuenta"
                     android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/tvDescuento"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:text="@string/Descuento"/>
+                    <Spinner
+                        android:id="@+id/spDescuento"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:textAlignment="center"
+                        android:entries="@array/Decuentos"
+                        android:background="@color/Blanco">
+                    </Spinner>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/bSoloGuardar"
                     style="@style/botonVerde"
                     android:layout_width="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     android:layout_height="0dp"
-                    android:text="@string/Solo_Guardar" />
+                    android:text="@string/Solo_Guardar"
+                    android:layout_margin="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -146,7 +185,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:text="@string/Imprimir_Ultimo" />
+                        android:text="@string/Imprimir_Ultimo"
+                        android:layout_margin="10dp" />
 
                     <Button
                         android:id="@+id/bImprimirTodo"
@@ -154,7 +194,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:text="@string/Imprimir_Todo" />
+                        android:text="@string/Imprimir_Todo"
+                        android:layout_margin="10dp" />
 
 
                 </LinearLayout>
@@ -171,7 +212,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:text="@string/Enviar_Ultimo" />
+                        android:text="@string/Enviar_Ultimo"
+                        android:layout_margin="10dp" />
 
                     <Button
                         android:id="@+id/bEnviarTodo"
@@ -179,7 +221,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:text="@string/Enviar_Todo" />
+                        android:text="@string/Enviar_Todo"
+                        android:layout_margin="10dp" />
 
 
                 </LinearLayout>

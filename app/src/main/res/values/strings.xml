@@ -97,7 +97,7 @@
 
 
     <!-- ################################################### Pagina de guardar-->
-    <string name="Cliente_Existente">CLIENTE EXSTENTE</string>
+    <string name="Cliente_Existente">CLIENTE EXISTENTE</string>
     <string name="Cliente_Nuevo">CLIENTE NUEVO</string>
 
 
@@ -105,11 +105,13 @@
     <string name="Celular">Celular: </string>
     <string name="Deuda_Anterior">Deuda Anterior: </string>
 
-    <string name="Esta_Cuenta">Esta_Cuenta: </string>
+    <string name="Esta_Cuenta">Esta Cuenta: </string>
     <string name="Deuda_Nueva">Deuda Nueva: </string>
 
     <string name="Nombre_Nuevo">Nombre: </string>
     <string name="Celular_Nuevo">Celular: </string>
+    <string name="Descuento">¿Gana descuento? (%)</string>
+
 
     <string name="Solo_Guardar">SOLO GUARDAR</string>
     <string name="Imprimir_Ultimo">IMPRIMIR ESTE TICKET</string>
@@ -118,6 +120,20 @@
     <string name="Enviar_Todo">ENVIAR TODO</string>
 
     <string name="Cancelar_Guardar">CANCELAR</string>
+
+    <string-array name="Decuentos">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
 
     <!-- ################################################### Pagina de Productos-->
     <string name="TituloArticulos">ARTÍCULOS</string>
@@ -134,7 +150,6 @@
     <string name="Guardar_Categoria">GUARDAR</string>
     <string name="Editar_Categoria">EDITAR</string>
     <string name="Eliminar_Categoria">ELIMINAR</string>
-
 
 
     <string name="Titulo_Articulo">CREACIÓN Y EDICIÓN DE ARTÍCULOS</string>
@@ -176,8 +191,6 @@
         <item>Papeleria</item>
         <item>Vitrina</item>
     </string-array>
-
-
 
 
     <!-- ################################################### Pagina de Clientes-->

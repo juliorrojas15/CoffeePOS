@@ -1,6 +1,8 @@
 package com.example.pos_coffee;
 
-public class Articulos_Entidad {
+import java.io.Serializable;
+
+public class Articulos_Entidad implements Serializable {
     private String sNombreArt,sCategoriaArt,sRefArt;
     private int iCostoArt,iPrecioArt,iStockArt,iDescuentoArt,iCodigoBarrasArt,iIndexColor;
     private String sTipoVisualizacion,sColor, sUriImagen;

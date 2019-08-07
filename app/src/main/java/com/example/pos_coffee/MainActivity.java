@@ -154,9 +154,15 @@ public class MainActivity extends AppCompatActivity
         obGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fNavegar();
+                Intent Destino=new Intent(MainActivity.this,pagGuardar.class);
+
+                Destino.putExtra("EstaVenta",alTotalVenta.get(iTicketSeleccionado));
+                Destino.putExtra("Cantidades",listCantidades.get(iTicketSeleccionado));
+                Destino.putExtra("ListadoArt",list_Venta_Art.get(iTicketSeleccionado));
+                startActivity(Destino);
             }
         });
+
         obNuevoTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -322,12 +328,19 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 iTicketSeleccionado=position;
-                fTickets_LV("EDICION",alTotalVenta.get(iTicketSeleccionado),iTicketSeleccionado);
-                myAdapter_Venta_Art = new Art_Venta_Adaptador(MainActivity.this,
-                        list_Venta_Art.get(iTicketSeleccionado),listCantidades.get(iTicketSeleccionado));
-                olvVentaArticulos.setAdapter(myAdapter_Venta_Art);
-                String sTotalVenta= "$ "+decimalFormat.format(alTotalVenta.get(iTicketSeleccionado));
-                otvTotalVenta.setText(sTotalVenta);
+                if (alTotalVenta.size()>iTicketSeleccionado){
+                    fTickets_LV("EDICION",alTotalVenta.get(iTicketSeleccionado),iTicketSeleccionado);
+                    myAdapter_Venta_Art = new Art_Venta_Adaptador(MainActivity.this,
+                            list_Venta_Art.get(iTicketSeleccionado),listCantidades.get(iTicketSeleccionado));
+                    olvVentaArticulos.setAdapter(myAdapter_Venta_Art);
+                    String sTotalVenta= "$ "+decimalFormat.format(alTotalVenta.get(iTicketSeleccionado));
+                    otvTotalVenta.setText(sTotalVenta);
+                }
+                else{
+                    fTickets_LV("EDICION",0,iTicketSeleccionado);
+                    olvVentaArticulos.setAdapter(adapterVacio);
+                    otvTotalVenta.setText("$ 0");
+                }
             }
         });
 
@@ -339,8 +352,8 @@ public class MainActivity extends AppCompatActivity
     //#########################################################################################     NAVEGACIÓN SIMPLE
     public void fNavegar (){
         //Navagación
-        Intent Destino=new Intent(MainActivity.this,pagGuardar.class);
-        startActivity(Destino);
+        //Intent Destino=new Intent(MainActivity.this,pagGuardar.class);
+        //startActivity(Destino);
     }
 
     //#########################################################################################     ACCIONES DEL MENÚ
@@ -368,19 +381,29 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.bBorrarTicket) {
-            listCantidades.remove(iTicketSeleccionado);
-            list_Venta_Art.remove(iTicketSeleccionado);
+
             myAdapter_Tickets.remove(iTicketSeleccionado);
-            alValores.remove(iTicketSeleccionado);
+            if (olvVentaArticulos.getCount()>0){
+                listCantidades.remove(iTicketSeleccionado);
+                list_Venta_Art.remove(iTicketSeleccionado);
+                alValores.remove(iTicketSeleccionado);
+                alTotalVenta.remove(iTicketSeleccionado);
+            }
 
-            myAdapter_Venta_Art = new Art_Venta_Adaptador(MainActivity.this,
-                    list_Venta_Art.get(0),listCantidades.get(0));
-            olvVentaArticulos.setAdapter(myAdapter_Venta_Art);
+            if (alTotalVenta.size()>0){
+                myAdapter_Venta_Art = new Art_Venta_Adaptador(MainActivity.this,
+                        list_Venta_Art.get(0),listCantidades.get(0));
+                olvVentaArticulos.setAdapter(myAdapter_Venta_Art);
 
-            iTicketSeleccionado=0;
-            fTickets_LV("EDICION",alTotalVenta.get(0),0);
-            String sTotalVenta= "$ "+decimalFormat.format(alTotalVenta.get(0));
-            otvTotalVenta.setText(sTotalVenta);
+                iTicketSeleccionado=0;
+                String sTotalVenta= "$ "+decimalFormat.format(alTotalVenta.get(0));
+                otvTotalVenta.setText(sTotalVenta);
+                fTickets_LV("EDICION",alTotalVenta.get(0),0);
+            }
+            else{
+                olvVentaArticulos.setAdapter(adapterVacio);
+                otvTotalVenta.setText("$ 0");
+            }
 
             return true;
         }

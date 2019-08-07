@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,100 +14,68 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-
-
         <activity
             android:name=".pagLogin"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustNothing" >
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity
-            android:name=".pagGuardar"
-            android:screenOrientation="landscape"
-            android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustNothing" >
-        </activity>
-
-
         <activity
             android:name=".pagProductos"
-            android:screenOrientation="landscape"
             android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustNothing">
-        </activity>
-
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".pagNuevoArticulo"
             android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
-
-
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".pagNuevaCategoria"
             android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
-
-
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".pagClientes"
-            android:screenOrientation="landscape"
             android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
-
-
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".pagRecuperarClave"
-            android:screenOrientation="landscape"
             android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
-
-
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".pagNewLogin"
+            android:launchMode="singleInstance"
             android:screenOrientation="landscape"
-            android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
-
-
-
-
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
-            android:launchMode="singleInstance"
-            android:name=".pagConfiguracion">
-        </activity>
-
-
+            android:name=".pagConfiguracion"
+            android:launchMode="singleInstance"></activity>
         <activity
+            android:name=".pagClavePersonal"
+            android:launchMode="singleInstance"></activity>
+        <activity
+            android:name=".pagGuardar"
             android:launchMode="singleInstance"
-            android:name=".pagClavePersonal" >
-        </activity>
-
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
